@@ -13,5 +13,20 @@ namespace Proyecto_Grupo02.Controllers
             return View();
         }
 
+        public ActionResult Registro()
+        {
+            return View();
+        }
+
+        public ActionResult RecuperarAcceso()
+        {
+            return View();
+        }
+
+        public ActionResult Principal()
+        {
+            return View();
+        }
+
     }
 }
