@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="~/Content/app.css">
     <link rel="stylesheet" href="~/Content/auth.css">
     <link rel="stylesheet" href="~/Content/ka-fashion.css">
+    <style>
+        /* Ensure correct image path for auth pages even when app runs in a virtual directory */
+        #auth #auth-right {
+            background: url('@Url.Content("~/Content/images/imagen-auth-right.png")');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
 <body>

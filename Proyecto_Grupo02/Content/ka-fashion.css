@@ -49,7 +49,7 @@ a {
         }
 
     #auth #auth-right {
-        background: linear-gradient(rgba(120,0,10,.20), rgba(120,0,10,.20)), url("../images/4853433.png");
+        background: url("images/imagen-auth-right.png");
         background-size: cover;
         background-position: center;
     }
@@ -143,4 +143,127 @@ table th {
 
 table td {
     font-weight: 400;
+}
+
+#auth #auth-left .auth-logo img {
+    max-width: 250px !important;
+    max-height: 250px !important;
+    width: auto !important;
+    height: auto !important;
+    margin-bottom: -60px !important;
+}
+
+.banner-card {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+.banner-card .card-body { padding: 1.25rem 1.75rem !important; min-height: 220px !important; }
+
+.dashboard-welcome {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 2rem !important;
+}
+
+.welcome-text {
+    flex: 0 0 50% !important;
+}
+
+    .welcome-text .card-title {
+        font-size: 1.6rem !important;
+        color: #000 !important;
+    }
+
+    .welcome-text .ka-name {
+        color: var(--ka-red) !important;
+        font-weight: 700 !important;
+    }
+
+.welcome-image {
+    flex: 0 0 50% !important;
+    text-align: right !important;
+    position: relative !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+    .welcome-image img {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 220px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        border-radius: 8px!important;
+        display: block !important;
+        box-shadow: 0 12px 30px rgba(120,0,10,.12) !important;
+    }
+
+    .welcome-image::before {
+        content: "" !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 55% !important;
+        pointer-events: none !important;
+        border-radius: 8px !important;
+        background: linear-gradient(to left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 99%) !important;
+    }
+
+.stat-card {
+    border-radius: 10px !important;
+    box-shadow: 0 6px 20px rgba(120,0,10,.06) !important;
+}
+
+.stat-title {
+    color: #7b6b6b !important;
+    font-weight: 600 !important;
+}
+
+.stat-value {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: var(--ka-red) !important;
+}
+
+.sidebar-wrapper .sidebar-header .logo img,
+.logo img {
+    max-width: 130px !important;
+    max-height: 130px !important;
+    width: auto !important;
+    height: auto !important;
+    margin-bottom: -20px !important;
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .banner-card .card-body { min-height: 220px !important; }
+    .welcome-text { flex: 0 0 50% !important; }
+    .welcome-image { flex: 0 0 50% !important; min-width: 360px !important; }
+    .welcome-image img {
+        width: auto !important;
+        height: 100% !important;
+        max-height: 60vh !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .dashboard-welcome { flex-direction: column !important; }
+    .welcome-text, .welcome-image { flex: 0 0 100% !important; }
+    .welcome-image { width: 100% !important; height: auto !important; min-width: auto !important; order: 2 !important; margin-top: 1rem !important; }
+    .welcome-text { order: 1 !important; }
+    .welcome-image img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 360px !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        box-shadow: 0 8px 20px rgba(120,0,10,.08) !important;
+    }
+    .welcome-image::before { display: none !important; }
 }
