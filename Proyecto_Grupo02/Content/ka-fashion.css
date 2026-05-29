@@ -1,0 +1,146 @@
+﻿:root {
+    --ka-red: #b90012;
+    --ka-red-dark: #8f0010;
+    --ka-red-soft: #fff1f3;
+    --ka-text: #2b1b1b;
+}
+
+body {
+    background-color: #fff8f8;
+    color: var(--ka-text);
+}
+
+a {
+    color: var(--ka-red);
+}
+
+    a:hover {
+        color: var(--ka-red-dark);
+    }
+
+.btn-primary {
+    background-color: var(--ka-red) !important;
+    border-color: var(--ka-red) !important;
+}
+
+    .btn-primary:hover {
+        background-color: var(--ka-red-dark) !important;
+        border-color: var(--ka-red-dark) !important;
+    }
+
+#auth {
+    background-color: #fff8f8;
+}
+
+    #auth #auth-left {
+        background-color: #fffafa;
+    }
+
+        #auth #auth-left .auth-title {
+            color: var(--ka-text);
+        }
+
+            #auth #auth-left .auth-title::first-letter {
+                color: var(--ka-red);
+            }
+
+        #auth #auth-left .auth-subtitle {
+            color: #7b6b6b;
+        }
+
+    #auth #auth-right {
+        background: linear-gradient(rgba(120,0,10,.20), rgba(120,0,10,.20)), url("../images/4853433.png");
+        background-size: cover;
+        background-position: center;
+    }
+
+.form-control {
+    border: 1px solid #eadada;
+}
+
+    .form-control:focus {
+        border-color: var(--ka-red);
+        box-shadow: 0 0 0 .2rem rgba(185,0,18,.15);
+    }
+
+.sidebar-wrapper {
+    background: linear-gradient(180deg,#b90012,#8f0010);
+}
+
+    .sidebar-wrapper .menu .sidebar-link,
+    .sidebar-wrapper .menu .sidebar-link span,
+    .sidebar-wrapper .menu .sidebar-link i {
+        color: white;
+    }
+
+        .sidebar-wrapper .menu .sidebar-link:hover {
+            background-color: rgba(255,255,255,.15);
+        }
+
+    .sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
+        background-color: rgba(255,255,255,.22);
+    }
+
+#main {
+    background-color: #fff8f8;
+}
+
+.card {
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(120,0,10,.08);
+}
+
+    .card .card-header h4,
+    .page-title h3 {
+        color: var(--ka-red);
+    }
+
+footer {
+    color: #8a6b6b;
+}
+
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.auth-title,
+.page-title h3,
+.card-title {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.auth-subtitle {
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.btn {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.sidebar-wrapper .menu .sidebar-link span {
+    font-weight: 500;
+}
+
+.form-control {
+    font-weight: 400;
+}
+
+.card .card-header h4 {
+    font-weight: 600;
+}
+
+table th {
+    font-weight: 600;
+}
+
+table td {
+    font-weight: 400;
+}
