@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Detalle del Producto";
+}
+
+<div class="page-title mb-4">
+    <div class="row">
+        <div class="col-12">
+            <h3>Detalle del Producto</h3>
+            <p>Consulta la información completa del artículo seleccionado.</p>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="card product-detail-card">
+        <div class="card-body">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                    <div class="product-detail-image-container">
+                        <img src="~/Content/images/blusa1.png"
+                             class="product-detail-image"
+                             alt="Blusa rosada unitalla">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="product-detail-info">
+
+                        <h2 class="product-detail-title">
+                            Blusa Rosada Unitalla
+                        </h2>
+
+                        <p class="product-detail-price">
+                            ₡16.500,00
+                        </p>
+
+                        <p class="product-detail-description">
+                            Blusa femenina de estilo moderno, cómoda y fácil de combinar.
+                            Ideal para utilizar en ocasiones casuales y actividades diarias.
+                        </p>
+
+                        <div class="product-detail-row">
+                            <span class="product-detail-label">Categoría:</span>
+                            <span>Blusas</span>
+                        </div>
+
+                        <div class="product-detail-row">
+                            <span class="product-detail-label">Talla:</span>
+                            <span>Unitalla</span>
+                        </div>
+
+                        <div class="product-detail-row">
+                            <span class="product-detail-label">Color:</span>
+                            <span>Rosado</span>
+                        </div>
+
+                        <div class="product-detail-row">
+                            <span class="product-detail-label">Disponibilidad:</span>
+                            <span class="product-available">Disponible</span>
+                        </div>
+
+                        <div class="product-detail-actions mt-4">
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i>
+                                Volver a productos
+                            </a>
+
+                            <a href="#"
+                               class="btn btn-primary">
+                                <i class="bi bi-cart-plus"></i>
+                                Agregar al carrito
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

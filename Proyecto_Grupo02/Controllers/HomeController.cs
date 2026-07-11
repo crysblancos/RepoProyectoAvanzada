@@ -28,5 +28,14 @@ namespace Proyecto_Grupo02.Controllers
             return View();
         }
 
+        public ActionResult Producto()
+        {
+            return View();
+        }
+
+        public ActionResult DetalleProducto()
+        {
+            return View();
+        }
     }
 }
