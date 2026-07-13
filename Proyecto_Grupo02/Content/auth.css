@@ -1,42 +1,49 @@
 body {
-    background-color: #f2F7FF
+    background-color: #f2f7ff;
 }
 
 #auth {
     height: 100vh;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
-    #auth #auth-right {
-        height: 100%;
-        background: url(images/imagen-auth-right.png)
-    }
+#auth #auth-right {
+    height: 100%;
+    background: url(images/imagen-auth-right.png);
+}
+
+#auth #auth-left {
+    padding: 5rem 8rem;
+}
+
+#auth #auth-left .auth-title {
+    color: #241919;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+#auth #auth-left .auth-title .auth-title-red {
+    color: #c70018 !important;
+}
+
+#auth #auth-left .auth-subtitle {
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+    color: #a8aebb;
+}
+
+#auth #auth-left .auth-logo {
+     margin-bottom: 7rem;
+}
+
+#auth #auth-left .auth-logo img {
+     height: 2rem;
+}
+
+@media screen and (max-width: 767px) {
 
     #auth #auth-left {
-        padding: 5rem 8rem
-    }
-
-        #auth #auth-left .auth-title {
-            font-size: 4rem;
-            margin-bottom: 1rem
-        }
-
-        #auth #auth-left .auth-subtitle {
-            font-size: 1.7rem;
-            line-height: 2.5rem;
-            color: #a8aebb
-        }
-
-        #auth #auth-left .auth-logo {
-            margin-bottom: 7rem
-        }
-
-            #auth #auth-left .auth-logo img {
-                height: 2rem
-            }
-
-@media screen and (max-width:767px) {
-    #auth #auth-left {
-        padding: 5rem
+        padding: 5rem;
     }
 }

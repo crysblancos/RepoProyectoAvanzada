@@ -1,57 +1,709 @@
-﻿<div class="page-title">
+﻿@{
+    ViewBag.Title = "Principal";
+}
+
+<div class="page-title">
     <div class="row">
-        <div class="col-12 col-md-6 order-md-1 order-last">
+        <div class="col-12">
             <h3>Inicio</h3>
+            <p class="page-subtitle">
+                Descubre los productos y servicios disponibles en KA Fashion.
+            </p>
         </div>
     </div>
 </div>
+
 <section class="section">
-    <div class="card banner-card">
-        <div class="card-body dashboard-welcome">
-            <div class="welcome-text">
-                <h4 class="card-title">Bienvenido a <span class="ka-name">KA Fashion</span></h4>
-                <p>Desde aquí puedes administrar tu tienda, productos, pedidos y clientes de forma rápida y sencilla.</p>
-                <a href="#" class="btn btn-primary">Ir a la tienda</a>
+    <div class="ka-main-banner">
+        <div class="ka-banner-content">
+            <span class="ka-banner-label">
+                Moda femenina
+            </span>
+
+            <h1>
+                Encuentra tu estilo en
+                <span>KA Fashion</span>
+            </h1>
+
+            <p>
+                Ropa, calzado y accesorios para cada ocasión.
+                Explora nuestras categorías y encuentra las últimas novedades en moda.
+            </p>
+
+            <div class="ka-banner-buttons">
+
+                <a href="@Url.Action("Producto", "Home")"
+                   class="btn btn-primary ka-banner-button">
+                    <i class="bi bi-bag-fill"></i>
+                    Ver productos
+                </a>
+
+                <a href="#categorias"
+                   class="btn ka-outline-button">
+                    Explorar categorías
+                </a>
+
             </div>
 
-            <div class="welcome-image">
-                <img src="~/Content/images/imagen-auth-right.png" alt="Tienda KA Fashion" style="max-height:220px !important; width:100% !important; height:100% !important; object-fit:cover; object-position:center; display:block;" />
-            </div>
         </div>
+
+        <div class="ka-banner-image">
+            <img src="~/Content/images/KA FASHION BOUTIQUE.png"
+                 alt="Colección de KA Fashion" />
+        </div>
+
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-3 col-6 mb-3">
-            <div class="card stat-card">
-                <div class="card-body text-center">
-                    <h6 class="stat-title">Total Productos</h6>
-                    <div class="stat-value">128</div>
+    <!-- Categorías -->
+    <section id="categorias" class="ka-home-section ka-categories-section">
+
+        <div class="ka-section-heading">
+
+            <div>
+                <span class="ka-section-label">
+                    Nuestro catálogo
+                </span>
+
+                <h2>Explora nuestras categorías</h2>
+
+                <p>
+                    Encuentra ropa, accesorios y calzado de acuerdo con tu estilo.
+                </p>
+            </div>
+
+            <a href="@Url.Action("Producto", "Home")"
+               class="ka-section-link">
+
+                Ver todos los productos
+                <span aria-hidden="true">→</span>
+
+            </a>
+        </div>
+
+
+        <div id="carouselCategorias"
+             class="carousel slide ka-categories-carousel">
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+
+                    <div class="row">
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-blusas.jpg"
+                                         alt="Categoría Blusas" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Colección femenina</span>
+                                    <h3>Blusas</h3>
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-blazer.jpg"
+                                         alt="Categoría Blazers" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Estilo elegante</span>
+                                    <h3>Blazers</h3>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-accesorio.jpg"
+                                         alt="Categoría Accesorios" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Complementa tu estilo</span>
+                                    <h3>Accesorios</h3>
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-bolsos.jpg"
+                                         alt="Categoría Bolsos" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Para cada ocasión</span>
+                                    <h3>Bolsos</h3>
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-cardigans.jpg"
+                                         alt="Categoría Cardigans" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Comodidad para tu día</span>
+                                    <h3>Cardigans</h3>
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-chalecos.jpg"
+                                         alt="Categoría Chalecos" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Diseños modernos</span>
+                                    <h3>Chalecos</h3>
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-enterizos.jpg"
+                                         alt="Categoría Enterizos" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Un conjunto completo</span>
+                                    <h3>Enterizos</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-fajas.jpg"
+                                         alt="Categoría Fajas" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Detalles para complementar</span>
+                                    <h3>Fajas</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="row">
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-faldas.jpg"
+                                         alt="Categoría Faldas" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Frescura y estilo</span>
+                                    <h3>Faldas</h3>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-gabardinas.jpg"
+                                         alt="Categoría Gabardinas" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Estilo para cualquier clima</span>
+                                    <h3>Gabardinas</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-gorros.jpg"
+                                         alt="Categoría Gorros" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Accesorios para tu look</span>
+                                    <h3>Gorros</h3>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-jackets.jpg"
+                                         alt="Categoría Jackets" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Moda para cada temporada</span>
+                                    <h3>Jackets</h3>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-jeans.jpg"
+                                         alt="Categoría Jeans" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Un básico para combinar</span>
+                                    <h3>Jeans</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-pantalones.jpg"
+                                         alt="Categoría Pantalones" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Comodidad y moda</span>
+                                    <h3>Pantalones</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-shorts.jpg"
+                                         alt="Categoría Shorts" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Comodidad para días cálidos</span>
+                                    <h3>Shorts</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-sueteres.jpg"
+                                         alt="Categoría Suéteres" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Abrigo con estilo</span>
+                                    <h3>Suéteres</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="carousel-item">
+
+                    <div class="row">
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-vestidos.jpg"
+                                         alt="Categoría Vestidos" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>Para cada ocasión</span>
+                                    <h3>Vestidos</h3>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="ka-category-card">
+
+                                <div class="ka-category-image">
+                                    <img src="~/Content/images/categoria-zapatos.jpg"
+                                         alt="Categoría Zapatos" />
+                                </div>
+
+                                <div class="ka-category-info">
+                                    <span>El complemento perfecto</span>
+                                    <h3>Zapatos</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="carousel-indicators ka-category-indicators">
+
+                <button type="button"
+                        data-bs-target="#carouselCategorias"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Primer grupo de categorías">
+                </button>
+
+                <button type="button"
+                        data-bs-target="#carouselCategorias"
+                        data-bs-slide-to="1"
+                        aria-label="Segundo grupo de categorías">
+                </button>
+
+                <button type="button"
+                        data-bs-target="#carouselCategorias"
+                        data-bs-slide-to="2"
+                        aria-label="Tercer grupo de categorías">
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="ka-about-section">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="ka-about-image">
+
+                    <img src="~/Content/images/imagen-auth-right.png"
+                         alt="Tienda KA Fashion" />
+
+                    <div class="ka-about-floating-card">
+                        <i class="bi bi-shop"></i>
+                        <div>
+                            <strong>6 sucursales</strong>
+                            <span>Disponibles para nuestros clientes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="ka-about-content">
+
+                    <span class="ka-section-label">
+                        Conoce KA Fashion
+                    </span>
+                    <h2>Moda para resaltar tu estilo</h2>
+                    <p>
+                        KA Fashion es una tienda costarricense dedicada a ofrecer
+                        ropa, calzado y accesorios para mujer. Contamos con
+                        colecciones modernas y productos para diferentes estilos
+                        y ocasiones.
+                    </p>
+                    <p>
+                        Puedes explorar nuestros productos y próximamente realizar
+                        pedidos en línea, consultar disponibilidad y solicitar
+                        atención personalizada.
+                    </p>
+
+                    <div class="ka-about-features">
+                        <div class="ka-about-feature">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Productos seleccionados</span>
+                        </div>
+
+                        <div class="ka-about-feature">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Atención personalizada</span>
+                        </div>
+
+                        <div class="ka-about-feature">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Variedad de categorías</span>
+                        </div>
+
+                        <div class="ka-about-feature">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Disponibilidad por sucursal</span>
+                        </div>
+
+                    </div>
+
+                    <a href="@Url.Action("Producto", "Home")"
+                       class="btn btn-primary">
+                        Conocer el catálogo
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6 mb-3">
-            <div class="card stat-card">
-                <div class="card-body text-center">
-                    <h6 class="stat-title">Pedidos</h6>
-                    <div class="stat-value">87</div>
+    </section>
+
+
+    <section class="ka-stats-section">
+
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="ka-stat-box">
+
+                    <div class="ka-stat-icon">
+                        <i class="bi bi-bag-fill"></i>
+                    </div>
+
+                    <div class="ka-stat-content">
+                        <span class="ka-stat-number">6 000+</span>
+                        <span class="ka-stat-text">Productos en catálogo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="ka-stat-box">
+
+                    <div class="ka-stat-icon">
+                        <i class="bi bi-shop"></i>
+                    </div>
+
+                    <div class="ka-stat-content">
+                        <span class="ka-stat-number">6</span>
+                        <span class="ka-stat-text">Sucursales disponibles</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="ka-stat-box">
+
+                    <div class="ka-stat-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+
+                    <div class="ka-stat-content">
+                        <span class="ka-stat-number">100%</span>
+                        <span class="ka-stat-text">Atención personalizada</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6 mb-3">
-            <div class="card stat-card">
-                <div class="card-body text-center">
-                    <h6 class="stat-title">Clientes</h6>
-                    <div class="stat-value">532</div>
+    </section>
+
+
+    <section class="ka-home-section">
+        <div class="ka-section-heading">
+
+            <div>
+                <span class="ka-section-label">
+                    Nuestros servicios
+                </span>
+
+                <h2>Una mejor experiencia de compra</h2>
+
+                <p>
+                    Conoce algunos de los servicios disponibles en KA Fashion.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="ka-service-card">
+
+                    <div class="ka-service-icon">
+                        <i class="bi bi-bag-check-fill"></i>
+                    </div>
+
+                    <h3>Compras en línea</h3>
+
+                    <p>
+                        Explora nuestro catálogo, selecciona tus productos
+                        favoritos y realiza tu pedido desde cualquier lugar.
+                    </p>
+
+                    <a href="@Url.Action("Producto", "Home")">
+                        Explorar productos
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="ka-service-card">
+
+                    <div class="ka-service-icon">
+                        <i class="bi bi-person-bounding-box"></i>
+                    </div>
+
+                    <h3>Personal Shopper</h3>
+
+                    <p>
+                        Recibe apoyo personalizado para encontrar productos
+                        según tu estilo, talla, presupuesto y preferencias.
+                    </p>
+
+                    <a href="#">
+                        Solicitar el servicio
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="ka-service-card">
+
+                    <div class="ka-service-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+
+                    <h3>Retiro en sucursal</h3>
+
+                    <p>
+                        Selecciona la sucursal que prefieras y consulta la
+                        disponibilidad de los productos antes de realizar tu compra.
+                    </p>
+
+                    <a href="#">
+                        Ver sucursales
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6 mb-3">
-            <div class="card stat-card">
-                <div class="card-body text-center">
-                    <h6 class="stat-title">Ventas Totales</h6>
-                    <div class="stat-value">$12,450</div>
+    </section>
+
+
+    <section class="ka-contact-section">
+        <div class="ka-contact-content">
+
+            <span class="ka-contact-label">
+                ¿Necesitas ayuda?
+            </span>
+
+            <h2>Estamos para atenderte</h2>
+
+            <p>
+                Comunícate con KA Fashion para realizar consultas sobre
+                productos, sucursales o servicios.
+            </p>
+
+            <div class="ka-contact-data">
+                <div>
+                    <i class="bi bi-telephone-fill"></i>
+                    <span>8846-3007 / 7238-4515</span>
                 </div>
+
+                <div>
+                    <i class="bi bi-envelope-fill"></i>
+                    <span>kfashion2331@gmail.com</span>
+                </div>
+                <div>
+                    <i class="bi bi-clock-fill"></i>
+                    <span>Lunes a viernes de 9:00 a.m. a 5:00 p.m.</span>
+                </div>
+
             </div>
+
         </div>
-    </div>
+
+        <div class="ka-contact-action">
+
+            <a href="#"
+               class="btn ka-contact-button">
+                Contactar a KA Fashion
+            </a>
+
+        </div>
+    </section>
 </section>

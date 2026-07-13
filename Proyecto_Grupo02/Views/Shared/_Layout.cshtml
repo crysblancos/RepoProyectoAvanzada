@@ -20,7 +20,10 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="~/Content/images/KA Fashion.png" alt="Logo" srcset=""></a>
+                            <a href="@Url.Action("Principal", "Home")">
+                                <img src="~/Content/images/KA Fashion.png"
+                                     alt="Logo KA Fashion">
+                            </a>
                         </div>
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -37,10 +40,15 @@
                             </a>
                         </li>
 
-                        <a href="@Url.Action("Producto","Home")" class="sidebar-link">
-                            <i class="bi bi-bag-fill"></i>
-                            <span>Productos</span>
-                        </a>
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Producto", "Home")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-bag-fill"></i>
+                                <span>Productos</span>
+
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
