@@ -1,0 +1,272 @@
+﻿
+@{
+    ViewBag.Title = "PersonalShopper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <h3>Personal Shopper</h3>
+
+    <p class="page-subtitle">
+        Solicita asesoría personalizada según tu estilo,
+        talla y presupuesto.
+    </p>
+</div>
+
+<section class="section">
+
+    <div class="ka-personal-banner">
+
+        <div>
+
+            <span>Atención personalizada</span>
+
+            <h2>Encuentra prendas pensadas para ti</h2>
+
+            <p>
+                Cuéntanos qué necesitas y nuestro equipo podrá ayudarte
+                a encontrar opciones de acuerdo con tus preferencias.
+            </p>
+
+        </div>
+
+        <div class="ka-personal-banner-logo">
+
+            <img src="~/Content/images/KA Fashion.png"
+                 alt="Logo KA Fashion" />
+        </div>
+
+    </div>
+
+
+    <div class="ka-form-container">
+
+        <div class="ka-form-introduction">
+
+            <span class="ka-module-label">
+                Solicitud del servicio
+            </span>
+
+            <h4>Completa tus preferencias</h4>
+
+            <p>
+                Los campos marcados con asterisco son obligatorios.
+            </p>
+        </div>
+
+        <form id="formPersonalShopper">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psNombre"
+                           class="form-label">
+                        Nombre completo *
+                    </label>
+
+                    <input type="text"
+                           id="psNombre"
+                           class="form-control ka-form-control"
+                           placeholder="Ingrese su nombre"
+                           required />
+
+                    <div class="invalid-feedback">
+                        Ingrese su nombre completo.
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psCorreo"
+                           class="form-label">
+                        Correo electrónico *
+                    </label>
+
+                    <input type="email"
+                           id="psCorreo"
+                           class="form-control ka-form-control"
+                           placeholder="ejemplo@correo.com"
+                           required />
+
+                    <div class="invalid-feedback">
+                        Ingrese un correo válido.
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psTelefono"
+                           class="form-label">
+                        Teléfono
+                    </label>
+
+                    <input type="text"
+                           id="psTelefono"
+                           class="form-control ka-form-control"
+                           placeholder="8888-8888"
+                           maxlength="9"
+                           required />
+
+                    <div class="invalid-feedback">
+                        Ingrese un teléfono válido con el formato 8888-8888.
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psTalla"
+                           class="form-label">
+                        Talla *
+                    </label>
+
+                    <select id="psTalla"
+                            class="form-select ka-form-control"
+                            required>
+
+                        <option value="">
+                            Seleccione una talla
+                        </option>
+
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="Unitalla">Unitalla</option>
+
+                    </select>
+
+                    <div class="invalid-feedback">
+                        Seleccione una talla.
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psEstilo"
+                           class="form-label">
+                        Estilo que busca *
+                    </label>
+
+                    <select id="psEstilo"
+                            class="form-select ka-form-control"
+                            required>
+
+                        <option value="">
+                            Seleccione un estilo
+                        </option>
+
+                        <option value="Casual">Casual</option>
+                        <option value="Elegante">Elegante</option>
+                        <option value="Formal">Formal</option>
+                        <option value="Deportivo">Deportivo</option>
+                        <option value="Otro">Otro</option>
+
+                    </select>
+
+                    <div class="invalid-feedback">
+                        Seleccione el estilo que busca.
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psPresupuesto"
+                           class="form-label">
+                        Presupuesto aproximado
+                    </label>
+
+                    <input type="number"
+                           id="psPresupuesto"
+                           class="form-control ka-form-control"
+                           min="1"
+                           placeholder="Ejemplo: 50000"
+                           required />
+
+                    <div class="invalid-feedback">
+                        Ingrese un presupuesto mayor a cero.
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psOcasion"
+                           class="form-label">
+                        Ocasión
+                    </label>
+
+                    <input type="text"
+                           id="psOcasion"
+                           class="form-control ka-form-control"
+                           placeholder="Trabajo, evento, uso diario..."
+                           required />
+
+                    <div class="invalid-feedback">
+                        Indique la ocasión para la que necesita las prendas.
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-4">
+
+                    <label for="psColores"
+                           class="form-label">
+                        Colores preferidos
+                    </label>
+
+                    <input type="text"
+                           id="psColores"
+                           class="form-control ka-form-control"
+                           placeholder="Negro, rojo, beige..."
+                           required />
+
+                    <div class="invalid-feedback">
+                        Indique al menos un color de preferencia.
+                    </div>
+                </div>
+
+
+                <div class="col-12 mb-4">
+
+                    <label for="psNecesidades"
+                           class="form-label">
+                        Necesidades o preferencias
+                    </label>
+
+                    <textarea id="psNecesidades"
+                              class="form-control ka-form-control"
+                              rows="5"
+                              placeholder="Cuéntanos qué tipo de prendas buscas..."
+                              required></textarea>
+
+                    <div class="invalid-feedback">
+                        Describa sus necesidades o preferencias.
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+
+                    <button type="button"
+                            id="btnEnviarPersonalShopper"
+                            class="btn btn-primary ka-submit-button">
+                        <i class="bi bi-send-fill"></i>
+                        Enviar solicitud
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+

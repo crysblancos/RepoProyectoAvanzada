@@ -800,7 +800,13 @@ table td {
 }
 
     .ka-about-floating-card i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 2rem;
+        line-height: 1;
+        width: 40px;
+        height: 40px;
     }
 
     .ka-about-floating-card strong,
@@ -1170,5 +1176,752 @@ table td {
     .ka-contact-button {
         width: 100%;
         text-align: center;
+    }
+}
+
+
+.ka-module-card,
+.ka-form-container,
+.ka-order-summary,
+.ka-contact-information,
+.ka-profile-summary {
+    border: 1px solid #f0dadd;
+    border-radius: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 12px 30px rgba(120, 0, 10, 0.08);
+}
+
+.ka-module-card,
+.ka-form-container {
+    padding: 30px;
+}
+
+.ka-module-header {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+    .ka-module-header h4,
+    .ka-form-container h4,
+    .ka-order-summary h4 {
+        margin: 5px 0 0;
+        color: #241919;
+        font-weight: 700;
+    }
+
+.ka-module-label {
+    color: #c70018;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.ka-count-badge {
+    padding: 8px 14px;
+    border-radius: 20px;
+    background-color: #fff0f2;
+    color: #c70018;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* Pasos para lo del carrito */
+
+.ka-checkout-steps {
+    margin-bottom: 28px;
+    padding: 18px 25px;
+    border: 1px solid #f0dadd;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.ka-checkout-step {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #a1888c;
+}
+
+    .ka-checkout-step span {
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f9e9eb;
+        color: #a1888c;
+        font-weight: 700;
+    }
+
+    .ka-checkout-step.active {
+        color: #c70018;
+    }
+
+        .ka-checkout-step.active span {
+            background-color: #c70018;
+            color: #ffffff;
+        }
+
+.ka-checkout-line {
+    width: 80px;
+    margin: 0 18px;
+    border-top: 2px solid #efdadd;
+}
+
+
+/* carrito */
+
+.ka-cart-item {
+    padding: 22px 0;
+    border-bottom: 1px solid #f0dadd;
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    align-items: center;
+    gap: 22px;
+}
+
+.ka-cart-image {
+    width: 140px;
+    height: 165px;
+    padding: 8px;
+    border-radius: 14px;
+    background-color: #fff5f6;
+}
+
+    .ka-cart-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+    }
+
+.ka-cart-category {
+    display: block;
+    margin-bottom: 5px;
+    color: #a1888c;
+    font-size: 0.8rem;
+}
+
+.ka-cart-information h5 {
+    margin-bottom: 12px;
+    color: #241919;
+    font-weight: 700;
+}
+
+.ka-cart-attributes {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+    .ka-cart-attributes span {
+        padding: 6px 10px;
+        border-radius: 8px;
+        background-color: #fff0f2;
+        color: #756568;
+        font-size: 0.82rem;
+    }
+
+.ka-cart-price {
+    color: #008c4a;
+    font-size: 1.15rem;
+}
+
+.ka-cart-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ka-quantity-control {
+    border: 1px solid #e4cdd1;
+    border-radius: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.btn-cantidad {
+    width: 38px;
+    height: 38px;
+    border: 0;
+    background-color: #fff0f2;
+    color: #c70018;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+    .btn-cantidad:hover {
+        background-color: #c70018;
+        color: #ffffff;
+    }
+
+.cantidad-producto {
+    width: 45px;
+    height: 38px;
+    border: 0;
+    outline: 0;
+    background-color: #ffffff;
+    text-align: center;
+    font-weight: 600;
+}
+
+.ka-delete-button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff0f2;
+    color: #c70018;
+}
+
+    .ka-delete-button:hover {
+        background-color: #c70018;
+        color: #ffffff;
+    }
+
+.ka-continue-shopping {
+    margin-top: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #c70018;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .ka-continue-shopping:hover {
+        color: #8c0011;
+    }
+
+.ka-empty-cart {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+    .ka-empty-cart i {
+        display: block;
+        margin-bottom: 15px;
+        color: #c70018;
+        font-size: 4rem;
+    }
+
+    .ka-empty-cart h5 {
+        color: #241919;
+        font-weight: 700;
+    }
+
+    .ka-empty-cart p {
+        color: #8d797d;
+    }
+
+
+.ka-order-summary {
+    position: sticky;
+    top: 25px;
+    padding: 30px;
+}
+
+.ka-summary-row {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: #68595c;
+}
+
+.ka-summary-divider {
+    margin: 22px 0;
+    border-top: 1px solid #ead7da;
+}
+
+.ka-summary-total {
+    color: #241919;
+    font-size: 1.15rem;
+}
+
+    .ka-summary-total strong {
+        color: #c70018;
+        font-size: 1.35rem;
+    }
+
+.ka-full-button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 13px;
+}
+
+    .ka-full-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+.ka-safe-purchase {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #88777a;
+    font-size: 0.78rem;
+}
+
+    .ka-safe-purchase i {
+        color: #008c4a;
+        font-size: 1.1rem;
+    }
+
+
+/* Formulario */
+
+.ka-form-introduction {
+    margin-bottom: 25px;
+}
+
+    .ka-form-introduction p {
+        margin-bottom: 0;
+        color: #88777a;
+    }
+
+.ka-form-control {
+    min-height: 48px;
+    border: 1px solid #ead7da;
+    border-radius: 10px;
+}
+
+textarea.ka-form-control {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.ka-form-control:focus {
+    border-color: #c70018;
+    box-shadow: 0 0 0 3px rgba(199, 0, 24, 0.1);
+}
+
+.ka-submit-button {
+    min-width: 190px;
+    padding: 12px 22px;
+}
+
+.ka-form-divider {
+    margin: 10px 0 25px;
+    border-color: #ead7da;
+}
+
+
+/* personal shopper */
+
+.ka-personal-banner {
+    margin-bottom: 28px;
+    padding: 35px 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: linear-gradient(135deg, #c70018, #8c0011);
+    color: #ffffff;
+    box-shadow: 0 15px 35px rgba(120, 0, 10, 0.2);
+}
+
+    .ka-personal-banner span {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        opacity: 0.82;
+    }
+
+    .ka-personal-banner h2 {
+        margin: 8px 0;
+        color: #ffffff;
+    }
+
+    .ka-personal-banner p {
+        max-width: 750px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.84);
+    }
+
+
+/* contacto */
+
+.ka-contact-information {
+    height: 100%;
+    padding: 35px;
+    background: linear-gradient(160deg, #c70018, #8c0011);
+    color: #ffffff;
+}
+
+    .ka-contact-information h3 {
+        margin: 8px 0 15px;
+        color: #ffffff;
+    }
+
+    .ka-contact-information > p {
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.7;
+    }
+
+    .ka-contact-information .ka-module-label {
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+.ka-contact-item {
+    margin-top: 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+    .ka-contact-item > i {
+        width: 45px;
+        min-width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        font-size: 1.2rem;
+    }
+
+    .ka-contact-item strong,
+    .ka-contact-item span {
+        display: block;
+    }
+
+    .ka-contact-item span {
+        margin-top: 3px;
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+
+/* perfil */
+
+.ka-profile-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 28px;
+}
+
+.ka-profile-summary {
+    padding: 35px 25px;
+    text-align: center;
+}
+
+.ka-profile-avatar {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #c70018, #8c0011);
+    color: #ffffff;
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.ka-profile-avatar i {
+     width: 100%;
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #ffffff;
+     font-size: 3.4rem;
+     line-height: 1;
+     transform: translateY(1px);
+}
+
+.ka-profile-summary h4 {
+    margin-bottom: 5px;
+    color: #241919;
+    font-weight: 700;
+}
+
+.ka-profile-summary > span {
+    color: #907b7f;
+}
+
+.ka-profile-status {
+    margin-top: 22px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e9fff3;
+    color: #008c4a;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.ka-profile-logout {
+    margin-top: 25px;
+    padding: 11px;
+    border: 1px solid #efdadd;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #c70018;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .ka-profile-logout:hover {
+        background-color: #c70018;
+        color: #ffffff;
+    }
+
+
+@media screen and (max-width: 991px) {
+
+    .ka-cart-item {
+        grid-template-columns: 110px 1fr;
+    }
+
+    .ka-cart-image {
+        width: 110px;
+        height: 140px;
+    }
+
+    .ka-cart-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-end;
+    }
+
+    .ka-order-summary {
+        position: static;
+        margin-top: 25px;
+    }
+
+    .ka-profile-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .ka-checkout-line {
+        width: 40px;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .ka-checkout-steps {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .ka-checkout-line {
+        width: 0;
+        height: 25px;
+        margin: 0 0 0 15px;
+        border-top: 0;
+        border-left: 2px solid #efdadd;
+    }
+
+    .ka-cart-item {
+        grid-template-columns: 1fr;
+    }
+
+    .ka-cart-image {
+        width: 100%;
+        height: 260px;
+    }
+
+    .ka-cart-actions {
+        grid-column: auto;
+        justify-content: space-between;
+    }
+
+    .ka-personal-banner {
+        padding: 28px 25px;
+    }
+
+    .ka-personal-banner-icon {
+        display: none;
+    }
+
+    .ka-module-card,
+    .ka-form-container,
+    .ka-order-summary {
+        padding: 22px;
+    }
+}
+
+.ka-internal-header {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ka-header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+
+/* Perfil superior */
+
+.ka-header-profile {
+    padding: 7px 14px 7px 8px;
+    border: 1px solid #efdadd;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    color: #241919;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 7px 18px rgba(120, 0, 10, 0.08);
+    transition: 0.25s ease;
+}
+
+    .ka-header-profile:hover {
+        border-color: #c70018;
+        color: #c70018;
+        transform: translateY(-2px);
+    }
+
+.ka-header-profile-icon {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c70018;
+    color: #ffffff;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+    .ka-header-profile-icon i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+.ka-header-profile-text {
+    white-space: nowrap;
+}
+
+
+/* Carrito superior */
+
+.ka-header-cart {
+    position: relative;
+    min-height: 46px;
+    padding: 10px 17px;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background-color: #c70018;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(120, 0, 10, 0.18);
+    transition: 0.25s ease;
+}
+
+    .ka-header-cart:hover {
+        background-color: #970012;
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    .ka-header-cart > i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.15rem;
+        line-height: 1;
+    }
+
+.ka-header-cart-text {
+    white-space: nowrap;
+}
+
+.ka-header-cart-count {
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #c70018;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 575px) {
+
+    .ka-header-profile-text,
+    .ka-header-cart-text {
+        display: none;
+    }
+
+    .ka-header-profile {
+        padding: 6px;
+    }
+
+    .ka-header-cart {
+        padding: 11px 13px;
+    }
+}
+
+.ka-personal-banner-logo {
+    width: 110px;
+    min-width: 110px;
+    height: 110px;
+    padding: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+    .ka-personal-banner-logo img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+    }
+
+@media screen and (max-width: 767px) {
+
+    .ka-personal-banner-logo {
+        display: none;
     }
 }

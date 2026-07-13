@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "Contacto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <h3>Contacto</h3>
+
+    <p class="page-subtitle">
+        Envíanos tu consulta y te atenderemos lo antes posible.
+    </p>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-5 mb-4">
+
+            <div class="ka-contact-information">
+
+                <span class="ka-module-label">
+                    Atención al cliente
+                </span>
+
+                <h3>Estamos para ayudarte</h3>
+
+                <p>
+                    Puedes comunicarte con KA Fashion para realizar
+                    consultas sobre productos, pedidos, sucursales
+                    o servicios.
+                </p>
+
+
+                <div class="ka-contact-item">
+
+                    <i class="bi bi-telephone-fill"></i>
+
+                    <div>
+                        <strong>Teléfonos</strong>
+                        <span>8846-3007 / 7238-4515</span>
+                    </div>
+
+                </div>
+
+
+                <div class="ka-contact-item">
+
+                    <i class="bi bi-envelope-fill"></i>
+
+                    <div>
+                        <strong>Correo electrónico</strong>
+                        <span>kfashion2331@gmail.com</span>
+                    </div>
+
+                </div>
+
+
+                <div class="ka-contact-item">
+
+                    <i class="bi bi-clock-fill"></i>
+
+                    <div>
+                        <strong>Horario</strong>
+
+                        <span>
+                            Lunes a viernes de 9:00 a.m. a 5:00 p.m.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ka-contact-item">
+
+                    <i class="bi bi-geo-alt-fill"></i>
+
+                    <div>
+                        <strong>Ubicación</strong>
+                        <span>San José, Costa Rica</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-7">
+
+            <div class="ka-form-container">
+
+                <div class="ka-form-introduction">
+
+                    <span class="ka-module-label">
+                        Formulario de contacto
+                    </span>
+
+                    <h4>Escríbenos</h4>
+
+                    <p>
+                        Completa los datos y describe tu consulta.
+                    </p>
+
+                </div>
+
+
+                <form id="formContacto">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-4">
+
+                            <label for="contactoNombre"
+                                   class="form-label">
+                                Nombre completo *
+                            </label>
+
+                            <input type="text"
+                                   id="contactoNombre"
+                                   class="form-control ka-form-control"
+                                   required />
+
+                            <div class="invalid-feedback">
+                                Ingrese su nombre.
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-4">
+
+                            <label for="contactoCorreo"
+                                   class="form-label">
+                                Correo electrónico *
+                            </label>
+
+                            <input type="email"
+                                   id="contactoCorreo"
+                                   class="form-control ka-form-control"
+                                   required />
+
+                            <div class="invalid-feedback">
+                                Ingrese un correo válido.
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-4">
+
+                            <label for="contactoTelefono"
+                                   class="form-label">
+                                Teléfono
+                            </label>
+
+                            <input type="text"
+                                   id="contactoTelefono"
+                                   class="form-control ka-form-control"
+                                   placeholder="8888-8888"
+                                   maxlength="9"
+                                   required />
+
+                            <div class="invalid-feedback">
+                                Ingrese un teléfono válido con el formato 8888-8888.
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-4">
+
+                            <label for="contactoAsunto"
+                                   class="form-label">
+                                Asunto *
+                            </label>
+
+                            <select id="contactoAsunto"
+                                    class="form-select ka-form-control"
+                                    required>
+
+                                <option value="">
+                                    Seleccione un asunto
+                                </option>
+
+                                <option value="Productos">
+                                    Consulta de productos
+                                </option>
+
+                                <option value="Pedidos">
+                                    Consulta de pedidos
+                                </option>
+
+                                <option value="Sucursales">
+                                    Consulta de sucursales
+                                </option>
+
+                                <option value="Personal Shopper">
+                                    Personal Shopper
+                                </option>
+
+                                <option value="Otro">
+                                    Otro
+                                </option>
+
+                            </select>
+
+                            <div class="invalid-feedback">
+                                Seleccione un asunto.
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-12 mb-4">
+
+                            <label for="contactoMensaje"
+                                   class="form-label">
+                                Mensaje *
+                            </label>
+
+                            <textarea id="contactoMensaje"
+                                      class="form-control ka-form-control"
+                                      rows="6"
+                                      required></textarea>
+
+                            <div class="invalid-feedback">
+                                Escriba su consulta.
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-12">
+
+                            <button type="button"
+                                    id="btnEnviarContacto"
+                                    class="btn btn-primary ka-submit-button">
+                                <i class="bi bi-send-fill"></i>
+                                Enviar mensaje
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+

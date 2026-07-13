@@ -41,12 +41,53 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="@Url.Action("Producto", "Home")"
+                            <a href="@Url.Action("Producto", "Producto")"
                                class="sidebar-link">
 
                                 <i class="bi bi-bag-fill"></i>
                                 <span>Productos</span>
 
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("Carrito", "Carrito")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-cart-fill"></i>
+                                <span>Carrito</span>
+
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
+                            <a href="@Url.Action("PersonalShopper", "PersonalShopper")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-person-badge-fill"></i>
+                                <span>Personal Shopper</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Contacto", "Contacto")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-chat-dots-fill"></i>
+                                <span>Contacto</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Perfil", "Usuario")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-person-circle"></i>
+                                <span>Mi perfil</span>
                             </a>
                         </li>
 
@@ -56,10 +97,41 @@
             </div>
         </div>
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
+            <header class="ka-internal-header mb-3">
+
+                <a href="#"
+                   class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
+                <div class="ka-header-actions">
+
+                    @if (ViewBag.Title == "Principal")
+                    {
+                        <a href="@Url.Action("Perfil", "Usuario")"
+                           class="ka-header-profile">
+                            <span class="ka-header-profile-icon">
+                                <i class="bi bi-person-fill"></i>
+                            </span>
+                            <span class="ka-header-profile-text">
+                                Mi perfil
+                            </span>
+                        </a>
+                    }
+
+                    @if (ViewBag.Title == "Productos")
+                    {
+                        <a href="@Url.Action("Carrito", "Carrito")"
+                           class="ka-header-cart">
+                            <i class="bi bi-cart-fill"></i>
+                            <span class="ka-header-cart-text">
+                                Mi carrito
+                            </span>
+                            <span class="ka-header-cart-count">
+                                2
+                            </span>
+                        </a>
+                    }
+                </div>
             </header>
 
             <div class="page-heading">
@@ -80,6 +152,10 @@
     <script src="~/Scripts/perfect-scrollbar.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/carrito.js"></script>
+    <script src="~/Scripts/contacto.js"></script>
+    <script src="~/Scripts/personal-shopper.js"></script>
+    <script src="~/Scripts/perfil.js"></script>
 </body>
 
 </html>

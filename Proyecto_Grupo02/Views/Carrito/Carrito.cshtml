@@ -1,0 +1,294 @@
+﻿
+@{
+    ViewBag.Title = "Carrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-title">
+    <h3>Carrito de compras</h3>
+
+    <p class="page-subtitle">
+        Revisa los productos seleccionados antes de continuar con el pedido.
+    </p>
+</div>
+
+<section class="section">
+
+    <div class="ka-checkout-steps">
+
+        <div class="ka-checkout-step active">
+            <span>1</span>
+            <strong>Carrito</strong>
+        </div>
+
+        <div class="ka-checkout-line"></div>
+
+        <div class="ka-checkout-step">
+            <span>2</span>
+            <strong>Datos del pedido</strong>
+        </div>
+
+        <div class="ka-checkout-line"></div>
+
+        <div class="ka-checkout-step">
+            <span>3</span>
+            <strong>Confirmación</strong>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-lg-8 mb-4">
+
+            <div class="ka-module-card">
+
+                <div class="ka-module-header">
+
+                    <div>
+                        <span class="ka-module-label">
+                            Productos seleccionados
+                        </span>
+
+                        <h4>Tu carrito</h4>
+                    </div>
+
+                    <span class="ka-count-badge" id="cantidadProductos">
+                        2 artículos
+                    </span>
+
+                </div>
+
+
+                <div id="listaCarrito">
+
+                    <div class="ka-cart-item"
+                         data-precio="16500">
+
+                        <div class="ka-cart-image">
+
+                            <img src="~/Content/images/blusa1.png"
+                                 alt="Blusa Rosada Unitalla" />
+                        </div>
+
+                        <div class="ka-cart-information">
+
+                            <span class="ka-cart-category">
+                                Blusas
+                            </span>
+
+                            <h5>Blusa Rosada Unitalla</h5>
+                            <div class="ka-cart-attributes">
+
+                                <span>
+                                    <strong>Talla:</strong>
+                                    Unitalla
+                                </span>
+
+                                <span>
+                                    <strong>Color:</strong>
+                                    Rosado
+                                </span>
+
+                            </div>
+
+                            <strong class="ka-cart-price">
+                                ₡16.500,00
+                            </strong>
+                        </div>
+
+                        <div class="ka-cart-actions">
+
+                            <div class="ka-quantity-control">
+
+                                <button type="button"
+                                        class="btn-cantidad btn-restar"
+                                        aria-label="Disminuir cantidad">
+                                    −
+                                </button>
+
+                                <input type="text"
+                                       class="cantidad-producto"
+                                       value="1"
+                                       readonly
+                                       aria-label="Cantidad del producto" />
+
+                                <button type="button"
+                                        class="btn-cantidad btn-sumar"
+                                        aria-label="Aumentar cantidad">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <button type="button"
+                                    class="ka-delete-button"
+                                    aria-label="Eliminar producto"
+                                    title="Eliminar producto">
+
+                                <i class="bi bi-trash-fill"></i>
+
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="ka-cart-item"
+                         data-precio="14900">
+
+                        <div class="ka-cart-image">
+
+                            <img src="~/Content/images/blusa3.png"
+                                 alt="Blusa Beige" />
+
+                        </div>
+                        <div class="ka-cart-information">
+
+                            <span class="ka-cart-category">
+                                Blusas
+                            </span>
+
+                            <h5>Blusa Beige</h5>
+
+                            <div class="ka-cart-attributes">
+
+                                <span>
+                                    <strong>Talla:</strong>
+                                    S
+                                </span>
+
+                                <span>
+                                    <strong>Color:</strong>
+                                    Beige
+                                </span>
+
+                            </div>
+                            <strong class="ka-cart-price">
+                                ₡14.900,00
+                            </strong>
+
+                        </div>
+                        <div class="ka-cart-actions">
+
+                            <div class="ka-quantity-control">
+
+                                <button type="button"
+                                        class="btn-cantidad btn-restar"
+                                        aria-label="Disminuir cantidad">
+                                    −
+                                </button>
+
+                                <input type="text"
+                                       class="cantidad-producto"
+                                       value="1"
+                                       readonly
+                                       aria-label="Cantidad del producto" />
+
+                                <button type="button"
+                                        class="btn-cantidad btn-sumar"
+                                        aria-label="Aumentar cantidad">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <button type="button"
+                                    class="ka-delete-button"
+                                    aria-label="Eliminar producto"
+                                    title="Eliminar producto">
+
+                                <i class="bi bi-trash-fill"></i>
+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="carritoVacio"
+                     class="ka-empty-cart d-none">
+
+                    <i class="bi bi-cart-x"></i>
+
+                    <h5>Tu carrito está vacío</h5>
+
+                    <p>
+                        Agrega productos para continuar con tu compra.
+                    </p>
+
+                    <a href="@Url.Action("Producto", "Producto")"
+                       class="btn btn-primary">
+
+                        Ver productos
+
+                    </a>
+
+                </div>
+
+
+                <a href="@Url.Action("Producto", "Producto")"
+                   class="ka-continue-shopping">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Continuar comprando
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+            <div class="ka-order-summary">
+
+                <span class="ka-module-label">
+                    Resumen
+                </span>
+
+                <h4>Resumen del pedido</h4>
+
+                <div class="ka-summary-row">
+                    <span>Subtotal</span>
+                    <strong id="subtotalCarrito">₡31.400,00</strong>
+                </div>
+
+                <div class="ka-summary-row">
+                    <span>Entrega estimada</span>
+                    <strong id="costoEntrega">₡2.500,00</strong>
+                </div>
+
+                <div class="ka-summary-divider"></div>
+
+                <div class="ka-summary-row ka-summary-total">
+                    <span>Total</span>
+                    <strong id="totalCarrito">₡33.900,00</strong>
+                </div>
+
+                <button type="button"
+                        class="btn btn-primary ka-full-button"
+                        id="btnContinuarPedido">
+
+                    Continuar con el pedido
+                    <i class="bi bi-arrow-right"></i>
+
+                </button>
+
+                <div class="ka-safe-purchase">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <span>
+                        Tus datos se utilizarán únicamente para procesar
+                        el pedido.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
