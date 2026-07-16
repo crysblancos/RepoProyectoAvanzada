@@ -259,6 +259,7 @@
     <Content Include="EF\ENTITU.edmx.diagram">
       <DependentUpon>ENTITU.edmx</DependentUpon>
     </Content>
+    <None Include="ConnectionStrings.config" />
     <None Include="packages.config" />
     <Content Include="Views\Producto\Producto.cshtml" />
     <Content Include="Views\Producto\DetalleProducto.cshtml" />
