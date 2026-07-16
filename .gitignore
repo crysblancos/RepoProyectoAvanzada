@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Cadena de conexión local de cada uno
-ConnectionStrings.config
+#ConnectionStrings.config
