@@ -22,6 +22,47 @@ namespace Proyecto_Grupo02.Controllers
             return View();
         }
 
+        // Debug endpoint to show recent errors logged in tbError. Remove after debugging.
+        [HttpGet]
+        public ActionResult ShowErrors()
+        {
+            try
+            {
+                using (var context = new KA_FASHION_BDEntities())
+                {
+                    var errors = context.tbError.OrderByDescending(e => e.FechaHora).Take(20)
+                        .Select(e => new { e.FechaHora, e.Lugar, e.Mensaje, e.ConsecutivoUsuario }).ToList();
+
+                    return Json(errors, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                utilitario.RegistrarErrorBitacora(ex.GetBaseException().Message, MethodBase.GetCurrentMethod().Name);
+                return Content("Error reading tbError: " + ex.GetBaseException().Message);
+            }
+        }
+
+        // Debug endpoint to show recent users. Remove after debugging.
+        [HttpGet]
+        public ActionResult ShowUsers()
+        {
+            try
+            {
+                using (var context = new KA_FASHION_BDEntities())
+                {
+                    var users = context.tbUsuario.OrderByDescending(u => u.Consecutivo).Take(20)
+                        .Select(u => new { u.Consecutivo, u.Identificacion, u.CorreoElectronico, u.Nombre, u.Estado }).ToList();
+                    return Json(users, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                utilitario.RegistrarErrorBitacora(ex.GetBaseException().Message, MethodBase.GetCurrentMethod().Name);
+                return Content("Error reading tbUsuario: " + ex.GetBaseException().Message);
+            }
+        }
+
         [HttpPost]
         public ActionResult Index(UsuarioModel model)
         {
@@ -69,6 +110,26 @@ namespace Proyecto_Grupo02.Controllers
         }
 
         #endregion
+
+        // Diagnostic endpoint to verify DB connectivity. Remove after debugging.
+        [HttpGet]
+        public ActionResult TestDb()
+        {
+            try
+            {
+                using (var context = new KA_FASHION_BDEntities())
+                {
+                    var cs = context.Database.Connection.ConnectionString;
+                    var exists = context.Database.Exists();
+                    return Content($"DB reachable: {exists}\nConnectionString: {cs}");
+                }
+            }
+            catch (Exception ex)
+            {
+                utilitario.RegistrarErrorBitacora(ex.GetBaseException().Message, MethodBase.GetCurrentMethod().Name);
+                return Content("DB error: " + ex.GetBaseException().ToString());
+            }
+        }
 
         #region Registro de usuarios
 
