@@ -1,4 +1,4 @@
-﻿
+﻿@model Proyecto_Grupo02.Models.UsuarioModel
 @{
     ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,23 +16,22 @@
 
     <div class="ka-profile-layout">
 
-        
+
         <div class="ka-profile-summary">
 
             <div class="ka-profile-avatar">
                 <i class="bi bi-person-fill"></i>
             </div>
 
-            <h4>Nombre del cliente</h4>
-
-            <span>Cliente KA Fashion</span>
+            <h4>@Model.Nombre @Model.Apellido1</h4>
+            <span>@Model.CorreoElectronico</span>
 
             <div class="ka-profile-status">
                 <i class="bi bi-check-circle-fill"></i>
                 Cuenta activa
             </div>
 
-            <a href="@Url.Action("Index", "Home")"
+            <a href="@Url.Action("CerrarSesion", "Home")" 
                class="ka-profile-logout">
 
                 <i class="bi bi-box-arrow-right"></i>
@@ -59,141 +58,75 @@
             </div>
 
 
-            <form id="formPerfil"
-                  action="#"
-                  novalidate>
+            @if (ViewBag.Mensaje != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Mensaje</div>
+            }
+            @if (ViewBag.MensajeExito != null)
+            {
+                <div class="alert alert-success">@ViewBag.MensajeExito</div>
+            }
+
+            @using (Html.BeginForm("Perfil", "Usuario", FormMethod.Post, new { id = "formPerfil", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Consecutivo)
 
                 <div class="row">
 
                     <div class="col-md-4 mb-4">
-
-                        <label for="perfilNombre"
-                               class="form-label">
-                            Nombre *
-                        </label>
-
-                        <input type="text"
-                               id="perfilNombre"
-                               class="form-control ka-form-control"
-                               value="Nombre"
-                               required />
-
-                        <div class="invalid-feedback">
-                            Ingrese el nombre.
-                        </div>
+                        <label for="perfilNombre" class="form-label">Nombre *</label>
+                        @Html.TextBoxFor(m => m.Nombre, new { id = "perfilNombre", @class = "form-control ka-form-control", required = "required" })
+                        <div class="invalid-feedback">Ingrese el nombre.</div>
                     </div>
-
 
                     <div class="col-md-4 mb-4">
-
-                        <label for="perfilApellido1"
-                               class="form-label">
-                            Primer apellido
-                        </label>
-
-                        <input type="text"
-                               id="perfilApellido1"
-                               class="form-control ka-form-control"
-                               value="Apellido" />
+                        <label for="perfilApellido1" class="form-label">Primer apellido</label>
+                        @Html.TextBoxFor(m => m.Apellido1, new { id = "perfilApellido1", @class = "form-control ka-form-control" })
                     </div>
-
 
                     <div class="col-md-4 mb-4">
-
-                        <label for="perfilApellido2"
-                               class="form-label">
-                            Segundo apellido
-                        </label>
-
-                        <input type="text"
-                               id="perfilApellido2"
-                               class="form-control ka-form-control" />
+                        <label for="perfilApellido2" class="form-label">Segundo apellido</label>
+                        @Html.TextBoxFor(m => m.Apellido2, new { id = "perfilApellido2", @class = "form-control ka-form-control" })
                     </div>
-
 
                     <div class="col-md-6 mb-4">
-
-                        <label for="perfilCorreo"
-                               class="form-label">
-                            Correo electrónico *
-                        </label>
-
-                        <input type="email"
-                               id="perfilCorreo"
-                               class="form-control ka-form-control"
-                               value="correo@ejemplo.com"
-                               required />
-
-                        <div class="invalid-feedback">
-                            Ingrese un correo válido.
-                        </div>
+                        <label for="perfilCorreo" class="form-label">Correo electrónico *</label>
+                        @Html.TextBoxFor(m => m.CorreoElectronico, new { id = "perfilCorreo", type = "email", @class = "form-control ka-form-control", required = "required" })
+                        <div class="invalid-feedback">Ingrese un correo válido.</div>
                     </div>
-
 
                     <div class="col-md-6 mb-4">
-
-                        <label for="perfilTelefono"
-                               class="form-label">
-                            Teléfono
-                        </label>
-
-                        <input type="text"
-                               id="perfilTelefono"
-                               class="form-control ka-form-control"
-                               value="8888-8888" />
+                        <label for="perfilTelefono" class="form-label">Teléfono</label>
+                        @Html.TextBoxFor(m => m.Telefono, new { id = "perfilTelefono", @class = "form-control ka-form-control" })
                     </div>
-
 
                     <div class="col-12">
-
                         <hr class="ka-form-divider" />
+                        <p class="text-muted">Dejá estos campos en blanco si no querés cambiar tu contraseña.</p>
                     </div>
 
-
                     <div class="col-md-6 mb-4">
-
-                        <label for="perfilContrasenna"
-                               class="form-label">
-                            Nueva contraseña
-                        </label>
-
-                        <input type="password"
-                               id="perfilContrasenna"
-                               class="form-control ka-form-control" />
+                        <label for="perfilContrasenna" class="form-label">Nueva contraseña</label>
+                        @Html.PasswordFor(m => m.Contrasenna, new { id = "perfilContrasenna", @class = "form-control ka-form-control" })
                     </div>
 
-
                     <div class="col-md-6 mb-4">
-
-                        <label for="perfilConfirmar"
-                               class="form-label">
-                            Confirmar contraseña
-                        </label>
-
-                        <input type="password"
-                               id="perfilConfirmar"
-                               class="form-control ka-form-control" />
-
-                        <div class="invalid-feedback"
-                             id="mensajeContrasenna">
-
+                        <label for="perfilConfirmar" class="form-label">Confirmar contraseña</label>
+                        @Html.PasswordFor(m => m.ConfirmarContrasenna, new { id = "perfilConfirmar", @class = "form-control ka-form-control" })
+                        <div class="invalid-feedback" id="mensajeContrasenna">
                             Las contraseñas no coinciden.
-
                         </div>
                     </div>
 
-
                     <div class="col-12">
-
-                        <button type="button"
-                                id="btnGuardarPerfil"
-                                class="btn btn-primary ka-submit-button">
+                        <button type="submit" id="btnGuardarPerfil" class="btn btn-primary ka-submit-button">
                             <i class="bi bi-floppy-fill"></i>
                             Guardar cambios
                         </button>
                     </div>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </section>

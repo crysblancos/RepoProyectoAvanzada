@@ -113,7 +113,7 @@
                                 <i class="bi bi-person-fill"></i>
                             </span>
                             <span class="ka-header-profile-text">
-                                Mi perfil
+                                @Session["NombreUsuario"]
                             </span>
                         </a>
                     }
@@ -156,6 +156,8 @@
     <script src="~/Scripts/contacto.js"></script>
     <script src="~/Scripts/personal-shopper.js"></script>
     <script src="~/Scripts/perfil.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
 </body>
 
 </html>

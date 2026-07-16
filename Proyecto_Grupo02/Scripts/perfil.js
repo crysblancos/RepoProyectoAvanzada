@@ -22,8 +22,6 @@
         if (!formulario.checkValidity()) {
             return;
         }
-
-        alert("La información ingresada es válida.");
     });
 
     confirmar.addEventListener("input", function () {

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Proyecto_Grupo02.Models.UsuarioModel
+@{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
 }
 
@@ -11,79 +12,70 @@
                 </a>
             </div>
 
-            <h1 class="auth-title">
-                <span class="auth-title-red">Crear</span> cuenta
-            </h1>
+            <h1 class="auth-title"><span class="auth-title-red">Crear</span> cuenta</h1>
+            <p class="auth-subtitle mb-5">Completa tus datos para registrarte en el sistema.</p>
 
-            <p class="auth-subtitle mb-5">
-                Completa tus datos para registrarte en el sistema.
-            </p>
+            @if (ViewBag.Mensaje != null)
+            {
+                <div class="alert alert-danger">@ViewBag.Mensaje</div>
+            }
 
-            <form action="#" method="post">
+            @using (Html.BeginForm("Registro", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
 
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="email"
-                           class="form-control form-control-xl"
-                           placeholder="Correo electrónico">
-
-                    <div class="form-control-icon">
-                        <i class="bi bi-envelope"></i>
-                    </div>
+                    @Html.TextBoxFor(m => m.Identificacion, new { @class = "form-control form-control-xl", placeholder = "Identificación" })
+                    <div class="form-control-icon"><i class="bi bi-person-badge"></i></div>
                 </div>
 
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="text"
-                           class="form-control form-control-xl"
-                           placeholder="Usuario">
-
-                    <div class="form-control-icon">
-                        <i class="bi bi-person"></i>
-                    </div>
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-xl", placeholder = "Nombre" })
+                    <div class="form-control-icon"><i class="bi bi-person"></i></div>
                 </div>
 
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password"
-                           class="form-control form-control-xl"
-                           placeholder="Contraseña">
-
-                    <div class="form-control-icon">
-                        <i class="bi bi-shield-lock"></i>
-                    </div>
+                    @Html.TextBoxFor(m => m.Apellido1, new { @class = "form-control form-control-xl", placeholder = "Primer apellido" })
+                    <div class="form-control-icon"><i class="bi bi-person"></i></div>
                 </div>
 
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password"
-                           class="form-control form-control-xl"
-                           placeholder="Confirmar contraseña">
-
-                    <div class="form-control-icon">
-                        <i class="bi bi-shield-lock"></i>
-                    </div>
+                    @Html.TextBoxFor(m => m.Apellido2, new { @class = "form-control form-control-xl", placeholder = "Segundo apellido" })
+                    <div class="form-control-icon"><i class="bi bi-person"></i></div>
                 </div>
 
-                <button type="submit"
-                        class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
+                <div class="form-group position-relative has-icon-left mb-4">
+                    @Html.TextBoxFor(m => m.CorreoElectronico, new { @class = "form-control form-control-xl", placeholder = "Correo electrónico" })
+                    <div class="form-control-icon"><i class="bi bi-envelope"></i></div>
+                    @Html.ValidationMessageFor(m => m.CorreoElectronico, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group position-relative has-icon-left mb-4">
+                    @Html.PasswordFor(m => m.Contrasenna, new { @class = "form-control form-control-xl", placeholder = "Contraseña" })
+                    <div class="form-control-icon"><i class="bi bi-shield-lock"></i></div>
+                </div>
+
+                <div class="form-group position-relative has-icon-left mb-4">
+                    @Html.PasswordFor(m => m.ConfirmarContrasenna, new { @class = "form-control form-control-xl", placeholder = "Confirmar contraseña" })
+                    <div class="form-control-icon"><i class="bi bi-shield-lock"></i></div>
+                    @Html.ValidationMessageFor(m => m.ConfirmarContrasenna, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">
                     Registrarse
                 </button>
-
-            </form>
+            }
 
             <div class="text-center mt-5 text-lg fs-4">
                 <p class="text-gray-600">
                     ¿Ya tienes una cuenta?
-                    <a href="@Url.Action("Index", "Home")"
-                       class="font-bold">
-                        Inicia sesión
-                    </a>.
+                    <a href="@Url.Action("Index", "Home")" class="font-bold">Inicia sesión</a>.
                 </p>
             </div>
-
         </div>
     </div>
 
     <div class="col-lg-7 d-none d-lg-block">
-        <div id="auth-right">
-
-        </div>
+        <div id="auth-right"></div>
     </div>
 </div>
