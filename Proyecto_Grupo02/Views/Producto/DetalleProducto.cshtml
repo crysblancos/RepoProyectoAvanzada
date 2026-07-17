@@ -1,5 +1,7 @@
-﻿@{
+﻿@model Proyecto_Grupo02.Models.ProductoDetalleViewModel
+@{
     ViewBag.Title = "Detalle del Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="page-title mb-4">
@@ -18,60 +20,73 @@
 
                 <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
                     <div class="product-detail-image-container">
-                        <img src="~/Content/images/blusa1.png"
-                             class="product-detail-image"
-                             alt="Blusa rosada unitalla">
+                        <img src="~/Content/images/@Model.Imagen" class="product-detail-image" alt="@Model.Nombre">
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-md-12">
                     <div class="product-detail-info">
 
-                        <h2 class="product-detail-title">
-                            Blusa Rosada Unitalla
-                        </h2>
+                        <h2 class="product-detail-title">@Model.Nombre</h2>
 
-                        <p class="product-detail-price">
-                            ₡16.500,00
-                        </p>
+                        <p class="product-detail-price">@Model.Precio.ToString("₡#,##0.00")</p>
 
-                        <p class="product-detail-description">
-                            Blusa femenina de estilo moderno, cómoda y fácil de combinar.
-                            Ideal para utilizar en ocasiones casuales y actividades diarias.
-                        </p>
+                        <p class="product-detail-description">@Model.Descripcion</p>
 
                         <div class="product-detail-row">
                             <span class="product-detail-label">Categoría:</span>
-                            <span>Blusas</span>
+                            <span>@Model.Categoria</span>
                         </div>
 
                         <div class="product-detail-row">
                             <span class="product-detail-label">Talla:</span>
-                            <span>Unitalla</span>
+                            <span>@Model.Talla</span>
                         </div>
 
                         <div class="product-detail-row">
                             <span class="product-detail-label">Color:</span>
-                            <span>Rosado</span>
+                            <span>@Model.Color</span>
                         </div>
 
                         <div class="product-detail-row">
                             <span class="product-detail-label">Disponibilidad:</span>
-                            <span class="product-available">Disponible</span>
+                            @if (Model.Disponible)
+                            {
+                                <span class="product-available">Disponible (@Model.Existencias en stock)</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Agotado</span>
+                            }
                         </div>
 
                         <div class="product-detail-actions mt-4">
-                            <a href="@Url.Action("Producto", "Producto")"
-                               class="btn btn-outline-secondary">
+                            <a href="@Url.Action("Producto", "Producto")" class="btn btn-outline-secondary">
                                 <i class="bi bi-arrow-left"></i>
                                 Volver a productos
                             </a>
 
-                            <a href="#"
-                               class="btn btn-primary">
-                                <i class="bi bi-cart-plus"></i>
-                                Agregar al carrito
-                            </a>
+                            @if (Model.Disponible)
+                            {
+                                using (Html.BeginForm("Agregar", "Carrito", FormMethod.Post))
+                                {
+                                    @Html.Hidden("idProducto", Model.IdProducto)
+                                    @Html.Hidden("talla", Model.Talla)
+                                    @Html.Hidden("color", Model.Color)
+                                    <input type="number" name="cantidad" value="1" min="1" max="@Model.Existencias" class="form-control d-inline-block" style="width:80px;display:inline-block;" />
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-cart-plus"></i>
+                                        Agregar al carrito
+                                    </button>
+                                }
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-primary" disabled>
+                                    <i class="bi bi-cart-plus"></i>
+                                    Sin existencias
+                                </button>
+                            }
                         </div>
 
                     </div>
