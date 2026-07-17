@@ -3,72 +3,107 @@
     ViewBag.Title = "PersonalShopper";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="page-title">
+    <h3>Personal Shopper</h3>
 
-<div class="ka-form-container">
-    <div class="ka-form-introduction">
-        <span class="ka-module-label">Solicitud del servicio</span>
-        <h4>Completa tus preferencias</h4>
-        <p>Los campos marcados con asterisco son obligatorios.</p>
+    <p class="page-subtitle">
+        Solicita asesoría personalizada según tu estilo,
+        talla y presupuesto.
+    </p>
+</div>
+
+<section class="section">
+
+    <div class="ka-personal-banner">
+
+        <div>
+
+            <span>Atención personalizada</span>
+
+            <h2>Encuentra prendas pensadas para ti</h2>
+
+            <p>
+                Cuéntanos qué necesitas y nuestro equipo podrá ayudarte
+                a encontrar opciones de acuerdo con tus preferencias.
+            </p>
+
+        </div>
+
+        <div class="ka-personal-banner-logo">
+
+            <img src="~/Content/images/KA Fashion.png"
+                 alt="Logo KA Fashion" />
+
+        </div>
+
     </div>
 
-    @if (ViewBag.MensajeExito != null)
-    {
-        <div class="alert alert-success">@ViewBag.MensajeExito</div>
-    }
-    @if (ViewBag.Mensaje != null)
-    {
-        <div class="alert alert-danger">@ViewBag.Mensaje</div>
-    }
-
-    @using (Html.BeginForm("PersonalShopper", "PersonalShopper", FormMethod.Post, new { id = "formPersonalShopper" }))
-    {
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                @Html.LabelFor(m => m.Talla, "Talla *", new { @class = "form-label" })
-                @Html.DropDownListFor(m => m.Talla, new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Seleccione una talla", Value = "" },
-                    new SelectListItem { Text = "XS", Value = "XS" },
-                    new SelectListItem { Text = "S", Value = "S" },
-                    new SelectListItem { Text = "M", Value = "M" },
-                    new SelectListItem { Text = "L", Value = "L" },
-                    new SelectListItem { Text = "XL", Value = "XL" },
-                    new SelectListItem { Text = "Unitalla", Value = "Unitalla" }
-                }, new { @class = "form-select ka-form-control", id = "psTalla" })
-                @Html.ValidationMessageFor(m => m.Talla, "", new { @class = "invalid-feedback d-block" })
-            </div>
-
-            <div class="col-md-6 mb-4">
-                @Html.LabelFor(m => m.EstiloBuscado, "Estilo que busca *", new { @class = "form-label" })
-                @Html.DropDownListFor(m => m.EstiloBuscado, new List<SelectListItem>
-                {
-                    new SelectListItem { Text = "Seleccione un estilo", Value = "" },
-                    new SelectListItem { Text = "Casual", Value = "Casual" },
-                    new SelectListItem { Text = "Elegante", Value = "Elegante" },
-                    new SelectListItem { Text = "Formal", Value = "Formal" },
-                    new SelectListItem { Text = "Deportivo", Value = "Deportivo" },
-                    new SelectListItem { Text = "Otro", Value = "Otro" }
-                }, new { @class = "form-select ka-form-control", id = "psEstilo" })
-                @Html.ValidationMessageFor(m => m.EstiloBuscado, "", new { @class = "invalid-feedback d-block" })
-            </div>
-
-            <div class="col-md-6 mb-4">
-                @Html.LabelFor(m => m.Presupuesto, "Presupuesto aproximado *", new { @class = "form-label" })
-                @Html.TextBoxFor(m => m.Presupuesto, new { @class = "form-control ka-form-control", id = "psPresupuesto", type = "number", min = "1" })
-                @Html.ValidationMessageFor(m => m.Presupuesto, "", new { @class = "invalid-feedback d-block" })
-            </div>
-
-            <div class="col-12 mb-4">
-                @Html.LabelFor(m => m.Necesidades, "Necesidades o preferencias", new { @class = "form-label" })
-                @Html.TextAreaFor(m => m.Necesidades, new { @class = "form-control ka-form-control", id = "psNecesidades", rows = 5, placeholder = "Ocasión, colores preferidos, tipo de prendas..." })
-            </div>
-
-            <div class="col-12">
-                <button type="submit" id="btnEnviarPersonalShopper" class="btn btn-primary ka-submit-button">
-                    <i class="bi bi-send-fill"></i>
-                    Enviar solicitud
-                </button>
-            </div>
+    <div class="ka-form-container">
+        <div class="ka-form-introduction">
+            <span class="ka-module-label">Solicitud del servicio</span>
+            <h4>Completa tus preferencias</h4>
+            <p>Los campos marcados con asterisco son obligatorios.</p>
         </div>
-    }
-</div>
+
+        @if (ViewBag.MensajeExito != null)
+        {
+            <div class="alert alert-success">@ViewBag.MensajeExito</div>
+        }
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Mensaje</div>
+        }
+
+        @using (Html.BeginForm("PersonalShopper", "PersonalShopper", FormMethod.Post, new { id = "formPersonalShopper" }))
+        {
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    @Html.LabelFor(m => m.Talla, "Talla *", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.Talla, new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Seleccione una talla", Value = "" },
+                        new SelectListItem { Text = "XS", Value = "XS" },
+                        new SelectListItem { Text = "S", Value = "S" },
+                        new SelectListItem { Text = "M", Value = "M" },
+                        new SelectListItem { Text = "L", Value = "L" },
+                        new SelectListItem { Text = "XL", Value = "XL" },
+                        new SelectListItem { Text = "Unitalla", Value = "Unitalla" }
+                    }, new { @class = "form-select ka-form-control", id = "psTalla" })
+                    @Html.ValidationMessageFor(m => m.Talla, "", new { @class = "invalid-feedback d-block" })
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    @Html.LabelFor(m => m.EstiloBuscado, "Estilo que busca *", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.EstiloBuscado, new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Seleccione un estilo", Value = "" },
+                        new SelectListItem { Text = "Casual", Value = "Casual" },
+                        new SelectListItem { Text = "Elegante", Value = "Elegante" },
+                        new SelectListItem { Text = "Formal", Value = "Formal" },
+                        new SelectListItem { Text = "Deportivo", Value = "Deportivo" },
+                        new SelectListItem { Text = "Otro", Value = "Otro" }
+                    }, new { @class = "form-select ka-form-control", id = "psEstilo" })
+                    @Html.ValidationMessageFor(m => m.EstiloBuscado, "", new { @class = "invalid-feedback d-block" })
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    @Html.LabelFor(m => m.Presupuesto, "Presupuesto aproximado *", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Presupuesto, new { @class = "form-control ka-form-control", id = "psPresupuesto", type = "number", min = "1" })
+                    @Html.ValidationMessageFor(m => m.Presupuesto, "", new { @class = "invalid-feedback d-block" })
+                </div>
+
+                <div class="col-12 mb-4">
+                    @Html.LabelFor(m => m.Necesidades, "Necesidades o preferencias", new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.Necesidades, new { @class = "form-control ka-form-control", id = "psNecesidades", rows = 5, placeholder = "Ocasión, colores preferidos, tipo de prendas..." })
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" id="btnEnviarPersonalShopper" class="btn btn-primary ka-submit-button">
+                        <i class="bi bi-send-fill"></i>
+                        Enviar solicitud
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</section>
