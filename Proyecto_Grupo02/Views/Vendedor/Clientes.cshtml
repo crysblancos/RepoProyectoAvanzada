@@ -1,0 +1,88 @@
+﻿@model List<Proyecto_Grupo02.Models.VendedorClienteViewModel>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Clientes</h3>
+
+    <p class="page-subtitle">
+        Consulta los clientes registrados en KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo electrónico</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+
+                            <td>
+                                @item.NombreCompleto
+                            </td>
+
+                            <td>
+                                @item.Correo
+                            </td>
+
+                            <td>
+                                @item.Telefono
+                            </td>
+
+                            <td>
+
+                                @if (item.Estado)
+                                {
+                                    <span class="badge bg-success">
+                                        Activo
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        Inactivo
+                                    </span>
+                                }
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>

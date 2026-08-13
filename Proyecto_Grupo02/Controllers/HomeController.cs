@@ -96,7 +96,15 @@ namespace Proyecto_Grupo02.Controllers
                     Session["ConsecutivoRol"] = usuario.ConsecutivoRol;
 
                     if (usuario.TieneContrasennaTemp)
+                    {
                         return RedirectToAction("Perfil", "Usuario");
+                    }
+
+                    // Redirigir según el rol
+                    if (usuario.tbRol != null && usuario.tbRol.Nombre == "Vendedor")
+                    {
+                        return RedirectToAction("Principal", "Vendedor");
+                    }
 
                     return RedirectToAction("Principal", "Home");
                 }

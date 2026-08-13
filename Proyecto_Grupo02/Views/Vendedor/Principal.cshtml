@@ -1,0 +1,139 @@
+﻿@model Proyecto_Grupo02.Models.VendedorPrincipalViewModel
+
+@{
+    ViewBag.Title = "Principal Vendedor";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Panel del vendedor</h3>
+
+    <p class="page-subtitle">
+        Gestiona la atención de los clientes de KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-personal-banner">
+
+        <div>
+
+            <span>KA Fashion</span>
+
+            <h2>
+                Bienvenido al panel de atención
+            </h2>
+
+            <p>
+                Desde aquí puedes consultar solicitudes de
+                Personal Shopper, mensajes de contacto y
+                la información básica de los clientes.
+            </p>
+
+        </div>
+
+
+        <div class="ka-personal-banner-logo">
+
+            <img src="~/Content/images/KA Fashion.png"
+                 alt="KA Fashion" />
+
+        </div>
+
+    </div>
+
+
+    <div class="row mt-4">
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card">
+
+                <span class="ka-module-label">
+                    Personal Shopper
+                </span>
+
+                <h2>
+                    @Model.SolicitudesPendientes
+                </h2>
+
+                <p>
+                    Solicitudes pendientes de atención.
+                </p>
+
+                <a href="@Url.Action("PersonalShopper","Vendedor")"
+                   class="btn btn-primary">
+
+                    Ver solicitudes
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card">
+
+                <span class="ka-module-label">
+                    Contactos
+                </span>
+
+                <h2>
+                    @Model.ContactosPendientes
+                </h2>
+
+                <p>
+                    Consultas pendientes de clientes.
+                </p>
+
+                <a href="@Url.Action("Contactos","Vendedor")"
+                   class="btn btn-primary">
+
+                    Ver contactos
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card">
+
+                <span class="ka-module-label">
+                    Clientes
+                </span>
+
+                <h2>
+                    @Model.TotalClientes
+                </h2>
+
+                <p>
+                    Clientes registrados en el sistema.
+                </p>
+
+                <a href="@Url.Action("Clientes","Vendedor")"
+                   class="btn btn-primary">
+
+                    Ver clientes
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,145 @@
+﻿@model List<Proyecto_Grupo02.Models.VendedorContactoViewModel>
+
+@{
+    ViewBag.Title = "Contactos";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Consultas de clientes</h3>
+
+    <p class="page-subtitle">
+        Revisa los mensajes recibidos desde el formulario de contacto.
+    </p>
+
+</div>
+
+
+@if (TempData["MensajeExito"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["MensajeExito"]
+    </div>
+}
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Asunto</th>
+                        <th>Mensaje</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+
+                            <td>
+
+                                <strong>
+                                    @item.Nombre
+                                </strong>
+
+                                <br />
+
+                                <small>
+                                    @item.Correo
+                                </small>
+
+                            </td>
+
+
+                            <td>
+                                @item.Asunto
+                            </td>
+
+
+                            <td>
+                                @item.Mensaje
+                            </td>
+
+
+                            <td>
+                                @item.Fecha.ToString("dd/MM/yyyy")
+                            </td>
+
+
+                            <td>
+
+                                @if (item.Estado == "Pendiente")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Pendiente
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        @item.Estado
+                                    </span>
+                                }
+
+                            </td>
+
+
+                            <td>
+
+                                @if (item.Estado == "Pendiente")
+                                {
+                                    using (Html.BeginForm(
+                                        "AtenderContacto",
+                                        "Vendedor",
+                                        FormMethod.Post))
+                                    {
+
+                                        @Html.Hidden(
+                                                 "id",
+                                                 item.IdContacto
+                                             )
+
+                                        <button type="submit"
+                                                class="btn btn-primary btn-sm">
+
+                                            <i class="bi bi-check-circle"></i>
+
+                                            Atendido
+
+                                        </button>
+                                    }
+                                }
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
