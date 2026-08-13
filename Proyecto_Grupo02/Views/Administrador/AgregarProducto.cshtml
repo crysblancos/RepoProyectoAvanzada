@@ -1,0 +1,350 @@
+﻿@model Proyecto_Grupo02.Models.AdministradorProductoFormularioViewModel
+
+@{
+    ViewBag.Title = "Agregar producto";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Agregar producto</h3>
+
+    <p class="page-subtitle">
+        Registra un nuevo producto en KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="mb-4">
+
+            <span class="ka-module-label">
+                Nuevo producto
+            </span>
+
+            <h4 class="mt-2">
+                Información del producto
+            </h4>
+
+            <p class="text-muted">
+                Completa la información para registrar el producto.
+            </p>
+
+        </div>
+
+
+        @using (Html.BeginForm(
+            "AgregarProducto",
+            "Administrador",
+            FormMethod.Post,
+            new { @class = "row" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Nombre del producto
+                </label>
+
+                @Html.TextBoxFor(
+                    m => m.Nombre,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ingrese el nombre del producto"
+                    })
+
+                @Html.ValidationMessageFor(
+                    m => m.Nombre,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Categoría
+                </label>
+
+                @Html.DropDownListFor(
+                    m => m.IdCategoria,
+                    Model.Categorias,
+                    "Seleccione una categoría",
+                    new
+                    {
+                        @class = "form-select"
+                    })
+
+                @Html.ValidationMessageFor(
+                    m => m.IdCategoria,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-12 mb-3">
+
+                <label class="form-label">
+                    Descripción
+                </label>
+
+                @Html.TextAreaFor(
+                    m => m.Descripcion,
+                    new
+                    {
+                        @class = "form-control",
+                        rows = "4",
+                        placeholder = "Ingrese una descripción del producto"
+                    })
+
+                @Html.ValidationMessageFor(
+                    m => m.Descripcion,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label">
+                    Precio
+                </label>
+
+                <div class="input-group">
+
+                    <span class="input-group-text">
+                        ₡
+                    </span>
+
+                    @Html.TextBoxFor(
+                        m => m.Precio,
+                        new
+                        {
+                            @class = "form-control",
+                            type = "number",
+                            step = "0.01",
+                            min = "0.01",
+                            placeholder = "0.00"
+                        })
+
+                </div>
+
+                @Html.ValidationMessageFor(
+                    m => m.Precio,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label">
+                    Talla
+                </label>
+
+                @Html.TextBoxFor(
+                    m => m.Talla,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ejemplo: S, M, L"
+                    })
+
+                @Html.ValidationMessageFor(
+                    m => m.Talla,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label">
+                    Color
+                </label>
+
+                @Html.TextBoxFor(
+                    m => m.Color,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ejemplo: Rosa"
+                    })
+
+                @Html.ValidationMessageFor(
+                    m => m.Color,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-8 mb-3">
+
+                <label class="form-label">
+                    Imagen
+                </label>
+
+                @Html.TextBoxFor(
+                    m => m.Imagen,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Ejemplo: blusa1.png"
+                    })
+
+                <small class="text-muted">
+                    Ingresa el nombre de la imagen del producto.
+                </small>
+
+                @Html.ValidationMessageFor(
+                    m => m.Imagen,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <label class="form-label">
+                    Estado
+                </label>
+
+                @Html.DropDownListFor(
+                    m => m.IdEstado,
+                    Model.Estados,
+                    "Seleccione un estado",
+                    new
+                    {
+                        @class = "form-select"
+                    })
+
+                @Html.ValidationMessageFor(
+                    m => m.IdEstado,
+                    "",
+                    new
+                    {
+                        @class = "text-danger"
+                    })
+
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+
+                <div class="form-check mt-2">
+
+                    @Html.CheckBoxFor(
+                        m => m.Destacado,
+                        new
+                        {
+                            @class = "form-check-input"
+                        })
+
+                    <label class="form-check-label">
+                        Producto destacado
+                    </label>
+
+                </div>
+
+                <small class="text-muted">
+                    Marca esta opción si quieres mostrar el producto como destacado.
+                </small>
+
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+
+                <div class="form-check mt-2">
+
+                    @Html.CheckBoxFor(
+                        m => m.Novedad,
+                        new
+                        {
+                            @class = "form-check-input"
+                        })
+
+                    <label class="form-check-label">
+                        Producto nuevo
+                    </label>
+
+                </div>
+
+                <small class="text-muted">
+                    Marca esta opción si el producto debe aparecer como novedad.
+                </small>
+
+            </div>
+
+
+            <div class="col-md-12 mt-4">
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Guardar producto
+
+                </button>
+
+
+                <a href="@Url.Action(
+                            "Productos",
+                            "Administrador")"
+                   class="btn btn-secondary ms-2">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Cancelar
+
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

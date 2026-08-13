@@ -1,0 +1,240 @@
+﻿@using System.Linq
+@model IEnumerable<Proyecto_Grupo02.Models.AdministradorSucursalViewModel>
+
+@{
+    ViewBag.Title = "Sucursales";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Gestión de sucursales</h3>
+
+    <p class="page-subtitle">
+        Consulta y administra las sucursales de KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+
+            @TempData["Mensaje"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+            </button>
+
+        </div>
+    }
+
+
+    <div class="ka-module-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <span class="ka-module-label">
+                    Sucursales
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Sucursales registradas
+                </h4>
+
+            </div>
+
+
+            <div>
+
+                <a href="@Url.Action(
+                            "AgregarSucursal",
+                            "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Agregar sucursal
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Nombre
+                            </th>
+
+                            <th>
+                                Dirección
+                            </th>
+
+                            <th>
+                                Teléfono
+                            </th>
+
+                            <th>
+                                Horario
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var sucursal in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        @sucursal.Nombre
+                                    </strong>
+                                </td>
+
+
+                                <td>
+                                    @sucursal.Direccion
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(
+                                            sucursal.Telefono))
+                                    {
+                                        @sucursal.Telefono
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin teléfono
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(
+                                            sucursal.Horario))
+                                    {
+                                        @sucursal.Horario
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin horario
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (sucursal.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @sucursal.Estado
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a href="@Url.Action(
+                                                "EditarSucursal",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = sucursal.IdSucursal
+                                                })"
+                                       class="btn btn-sm btn-primary me-1">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    <a href="@Url.Action(
+                                                "CambiarEstadoSucursal",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = sucursal.IdSucursal
+                                                })"
+                                       class="btn btn-sm btn-secondary"
+                                       onclick="return confirm('¿Desea cambiar el estado de esta sucursal?');">
+
+                                        <i class="bi bi-arrow-repeat"></i>
+
+                                        Cambiar estado
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay sucursales registradas actualmente.
+
+            </div>
+        }
+
+    </div>
+
+</section>

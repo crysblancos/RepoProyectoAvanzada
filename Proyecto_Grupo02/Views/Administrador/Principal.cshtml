@@ -1,0 +1,268 @@
+﻿@model Proyecto_Grupo02.Models.AdministradorPrincipalViewModel
+
+@{
+    ViewBag.Title = "Panel de Administración";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Panel de Administración</h3>
+
+    <p class="page-subtitle">
+        Bienvenido al módulo administrativo de KA Fashion.
+        Desde aquí puedes consultar y administrar la información principal del sistema.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="row">
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Productos
+                </span>
+
+                <h2 class="mt-2">
+                    @Model.TotalProductos
+                </h2>
+
+                <p>
+                    Productos registrados en el catálogo.
+                </p>
+
+                <a href="@Url.Action("Productos", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-bag-fill"></i>
+
+                    Ver productos
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Clientes
+                </span>
+
+                <h2 class="mt-2">
+                    @Model.TotalClientes
+                </h2>
+
+                <p>
+                    Clientes registrados en KA Fashion.
+                </p>
+
+                <a href="@Url.Action("Clientes", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    Ver clientes
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Vendedores
+                </span>
+
+                <h2 class="mt-2">
+                    @Model.TotalVendedores
+                </h2>
+
+                <p>
+                    Vendedores registrados en KA Fashion.
+                </p>
+
+                <a href="@Url.Action("Vendedores", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-person-badge-fill"></i>
+
+                    Ver vendedores
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Pedidos
+                </span>
+
+                <h2 class="mt-2">
+                    @Model.TotalPedidos
+                </h2>
+
+                <p>
+                    Pedidos registrados en el sistema.
+                </p>
+
+                <a href="@Url.Action("Pedidos", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-receipt"></i>
+
+                    Ver pedidos
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Sucursales
+                </span>
+
+                <h2 class="mt-2">
+                    @Model.TotalSucursales
+                </h2>
+
+                <p>
+                    Sucursales registradas en KA Fashion.
+                </p>
+
+                <a href="@Url.Action("Sucursales", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-shop"></i>
+
+                    Ver sucursales
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Promociones activas
+                </span>
+
+                <h2 class="mt-2">
+                    @Model.PromocionesActivas
+                </h2>
+
+                <p>
+                    Promociones activas actualmente.
+                </p>
+
+                <a href="@Url.Action("Promociones", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-percent"></i>
+
+                    Ver promociones
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Categorías
+                </span>
+
+                <h4 class="mt-3">
+                    Gestión de categorías
+                </h4>
+
+                <p>
+                    Administra las categorías utilizadas para organizar los productos.
+                </p>
+
+                <a href="@Url.Action("Categorias", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-tags-fill"></i>
+
+                    Ver categorías
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="ka-module-card h-100">
+
+                <span class="ka-module-label">
+                    Inventario
+                </span>
+
+                <h4 class="mt-3">
+                    Gestión de existencias
+                </h4>
+
+                <p>
+                    Consulta y administra las existencias de productos por sucursal.
+                </p>
+
+                <a href="@Url.Action("Inventario", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-box-seam-fill"></i>
+
+                    Ver inventario
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>

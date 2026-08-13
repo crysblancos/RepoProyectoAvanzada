@@ -1,0 +1,262 @@
+﻿@using System.Linq
+@model IEnumerable<Proyecto_Grupo02.Models.AdministradorVendedorViewModel>
+
+@{
+    ViewBag.Title = "Vendedores";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Gestión de vendedores</h3>
+
+    <p class="page-subtitle">
+        Consulta y administra los vendedores de KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+
+            @TempData["Mensaje"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+            </button>
+
+        </div>
+    }
+
+
+    <div class="ka-module-card">
+
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <span class="ka-module-label">
+                    Vendedores
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Vendedores registrados
+                </h4>
+
+                <p class="text-muted mt-2">
+                    Desde aquí puedes agregar, editar,
+                    activar o desactivar vendedores.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <a href="@Url.Action(
+                            "AgregarVendedor",
+                            "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-person-plus-fill"></i>
+
+                    Agregar vendedor
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Identificación
+                            </th>
+
+                            <th>
+                                Nombre
+                            </th>
+
+                            <th>
+                                Correo electrónico
+                            </th>
+
+                            <th>
+                                Teléfono
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var vendedor in Model)
+                        {
+                            <tr>
+
+
+                                <td>
+                                    @vendedor.Identificacion
+                                </td>
+
+
+                                <td>
+
+                                    <strong>
+                                        @vendedor.NombreCompleto
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+                                    @vendedor.CorreoElectronico
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(
+                                            vendedor.Telefono))
+                                    {
+                                        @vendedor.Telefono
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin teléfono
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (vendedor.Estado)
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            Inactivo
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+
+                                    <a href="@Url.Action(
+                                                "EditarVendedor",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = vendedor.Consecutivo
+                                                })"
+                                       class="btn btn-sm btn-primary me-1">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    @if (vendedor.Estado)
+                                    {
+                                        <a href="@Url.Action(
+                                                    "CambiarEstadoVendedor",
+                                                    "Administrador",
+                                                    new
+                                                    {
+                                                        id = vendedor.Consecutivo
+                                                    })"
+                                           class="btn btn-sm btn-secondary"
+                                           onclick="return confirm('¿Desea desactivar este vendedor?');">
+
+                                            <i class="bi bi-person-x-fill"></i>
+
+                                            Desactivar
+
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action(
+                                                    "CambiarEstadoVendedor",
+                                                    "Administrador",
+                                                    new
+                                                    {
+                                                        id = vendedor.Consecutivo
+                                                    })"
+                                           class="btn btn-sm btn-success"
+                                           onclick="return confirm('¿Desea activar este vendedor?');">
+
+                                            <i class="bi bi-person-check-fill"></i>
+
+                                            Activar
+
+                                        </a>
+                                    }
+
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay vendedores registrados actualmente.
+
+            </div>
+        }
+
+
+    </div>
+
+</section>

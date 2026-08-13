@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProyectoKafashion - Grupo02</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/Content/app.css">
+    <link rel="stylesheet" href="~/Content/ka-fashion.css">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div id="sidebar" class="active">
+
+            <div class="sidebar-wrapper active">
+
+                <div class="sidebar-header">
+
+                    <div class="d-flex justify-content-between">
+
+                        <div class="logo">
+
+                            <a href="@Url.Action("Principal", "Administrador")">
+
+                                <img src="~/Content/images/KA Fashion.png"
+                                     alt="Logo KA Fashion">
+
+                            </a>
+
+                        </div>
+
+                        <div class="toggler">
+
+                            <a href="#"
+                               class="sidebar-hide d-xl-none d-block">
+
+                                <i class="bi bi-x bi-middle"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="sidebar-menu">
+
+                    <ul class="menu">
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Principal", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-house-door-fill"></i>
+
+                                <span>Principal</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Productos", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-bag-fill"></i>
+
+                                <span>Productos</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Categorias", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-tags-fill"></i>
+
+                                <span>Categorías</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Inventario", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-box-seam-fill"></i>
+
+                                <span>Inventario</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Sucursales", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-shop"></i>
+
+                                <span>Sucursales</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Promociones", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-percent"></i>
+
+                                <span>Promociones</span>
+
+                            </a>
+
+                        </li>
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Vendedores", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-person-badge-fill"></i>
+
+                                <span>Vendedores</span>
+
+                            </a>
+
+                        </li>
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("Clientes", "Administrador")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-people-fill"></i>
+
+                                <span>Clientes</span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="sidebar-item">
+
+                            <a href="@Url.Action("CerrarSesion", "Home")"
+                               class="sidebar-link">
+
+                                <i class="bi bi-box-arrow-right"></i>
+
+                                <span>Cerrar sesión</span>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="main">
+
+            <header class="mb-3">
+
+                <a href="#"
+                   class="burger-btn d-block d-xl-none">
+
+                    <i class="bi bi-justify fs-3"></i>
+
+                </a>
+
+            </header>
+
+
+            <div class="page-heading">
+
+                @RenderBody()
+
+            </div>
+
+
+            <footer>
+
+                <div class="footer clearfix mb-0 text-muted">
+
+                    <div class="float-start">
+
+                        <p>
+                            2026 &copy; KA Fashion
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <script src="~/Scripts/perfect-scrollbar.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

@@ -22,7 +22,6 @@ namespace Proyecto_Grupo02.Controllers
             return View();
         }
 
-        // Debug endpoint to show recent errors logged in tbError. Remove after debugging.
         [HttpGet]
         public ActionResult ShowErrors()
         {
@@ -43,7 +42,6 @@ namespace Proyecto_Grupo02.Controllers
             }
         }
 
-        // Debug endpoint to show recent users. Remove after debugging.
         [HttpGet]
         public ActionResult ShowUsers()
         {
@@ -70,7 +68,7 @@ namespace Proyecto_Grupo02.Controllers
             {
                 using (var context = new KA_FASHION_BDEntities())
                 {
-                    // Login con LINQ
+                    
                     var usuario = (from U in context.tbUsuario
                                    where U.CorreoElectronico == model.CorreoElectronico
                                    && U.Contrasenna == model.Contrasenna
@@ -89,7 +87,7 @@ namespace Proyecto_Grupo02.Controllers
                         return View();
                     }
 
-                    // Guardar datos en sesión
+                    
                     Session["ConsecutivoUsuario"] = usuario.Consecutivo;
                     Session["NombreUsuario"] = usuario.Nombre;
                     Session["NombreRol"] = usuario.tbRol.Nombre;
@@ -100,10 +98,18 @@ namespace Proyecto_Grupo02.Controllers
                         return RedirectToAction("Perfil", "Usuario");
                     }
 
-                    // Redirigir según el rol
-                    if (usuario.tbRol != null && usuario.tbRol.Nombre == "Vendedor")
+                    
+                    if (usuario.tbRol != null)
                     {
-                        return RedirectToAction("Principal", "Vendedor");
+                        if (usuario.tbRol.Nombre == "Vendedor")
+                        {
+                            return RedirectToAction("Principal", "Vendedor");
+                        }
+
+                        if (usuario.tbRol.Nombre == "Administrador")
+                        {
+                            return RedirectToAction("Principal", "Administrador");
+                        }
                     }
 
                     return RedirectToAction("Principal", "Home");
@@ -119,7 +125,7 @@ namespace Proyecto_Grupo02.Controllers
 
         #endregion
 
-        // Diagnostic endpoint to verify DB connectivity. Remove after debugging.
+        
         [HttpGet]
         public ActionResult TestDb()
         {
@@ -176,7 +182,7 @@ namespace Proyecto_Grupo02.Controllers
                         Contrasenna = model.Contrasenna,
                         Estado = true,
                         TieneContrasennaTemp = false,
-                        ConsecutivoRol = 1 // 1 = Cliente
+                        ConsecutivoRol = 1 
                     });
 
                     var response = context.SaveChanges();

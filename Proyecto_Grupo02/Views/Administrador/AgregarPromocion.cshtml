@@ -1,0 +1,226 @@
+﻿@model Proyecto_Grupo02.Models.AdministradorPromocionFormularioViewModel
+
+@{
+    ViewBag.Title = "Agregar promoción";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Agregar promoción</h3>
+
+    <p class="page-subtitle">
+        Registra una nueva promoción para KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="mb-4">
+
+            <span class="ka-module-label">
+                Nueva promoción
+            </span>
+
+            <h4 class="mt-2">
+                Información de la promoción
+            </h4>
+
+        </div>
+
+
+        @using (Html.BeginForm(
+            "AgregarPromocion",
+            "Administrador",
+            FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="row">
+
+
+                <div class="col-md-8 mb-3">
+
+                    <label class="form-label">
+                        Nombre
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Nombre,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ejemplo: Descuento de temporada"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Nombre,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Descuento %
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Descuento,
+                        new
+                        {
+                            @class = "form-control",
+                            type = "number",
+                            min = "1",
+                            max = "100",
+                            step = "0.01"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Descuento,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-12 mb-3">
+
+                    <label class="form-label">
+                        Descripción
+                    </label>
+
+                    @Html.TextAreaFor(
+                        m => m.Descripcion,
+                        new
+                        {
+                            @class = "form-control",
+                            rows = "3",
+                            placeholder = "Ingrese una descripción"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Fecha de inicio
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.FechaInicio,
+                        "{0:yyyy-MM-dd}",
+                        new
+                        {
+                            @class = "form-control",
+                            type = "date"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.FechaInicio,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Fecha final
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.FechaFin,
+                        "{0:yyyy-MM-dd}",
+                        new
+                        {
+                            @class = "form-control",
+                            type = "date"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.FechaFin,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Estado
+                    </label>
+
+                    @Html.DropDownListFor(
+                        m => m.IdEstado,
+                        Model.Estados,
+                        "Seleccione un estado",
+                        new
+                        {
+                            @class = "form-select"
+                        })
+
+                </div>
+
+
+                <div class="col-md-12 mt-3">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-plus-circle"></i>
+
+                        Guardar promoción
+
+                    </button>
+
+
+                    <a href="@Url.Action(
+                                "Promociones",
+                                "Administrador")"
+                       class="btn btn-secondary ms-2">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancelar
+
+                    </a>
+
+                </div>
+
+
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

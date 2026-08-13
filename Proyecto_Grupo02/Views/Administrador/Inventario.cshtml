@@ -1,0 +1,262 @@
+﻿@using System.Linq
+@model IEnumerable<Proyecto_Grupo02.Models.AdministradorInventarioViewModel>
+
+@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Gestión de inventario</h3>
+
+    <p class="page-subtitle">
+        Consulta y administra las existencias de productos por sucursal.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+
+            @TempData["Mensaje"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+            </button>
+
+        </div>
+    }
+
+
+    <div class="ka-module-card">
+
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <span class="ka-module-label">
+                    Inventario
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Existencias registradas
+                </h4>
+
+            </div>
+
+
+            <div>
+
+                <a href="@Url.Action(
+                            "AgregarInventario",
+                            "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Agregar inventario
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Producto
+                            </th>
+
+                            <th>
+                                Sucursal
+                            </th>
+
+                            <th>
+                                Talla
+                            </th>
+
+                            <th>
+                                Color
+                            </th>
+
+                            <th>
+                                Existencias
+                            </th>
+
+                            <th>
+                                Actualización
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <strong>
+                                        @item.Producto
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+                                    @item.Sucursal
+                                </td>
+
+
+                                <td>
+                                    @item.Talla
+                                </td>
+
+
+                                <td>
+                                    @item.Color
+                                </td>
+
+
+                                <td>
+
+                                    @if (item.Existencias > 10)
+                                    {
+                                        <span class="badge bg-success">
+                                            @item.Existencias
+                                        </span>
+                                    }
+                                    else if (item.Existencias > 0)
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            @item.Existencias
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">
+                                            0
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @item.FechaActualizacion.ToString(
+                                        "dd/MM/yyyy HH:mm"
+                                    )
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (item.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @item.Estado
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a href="@Url.Action(
+                                                "EditarInventario",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = item.IdInventario
+                                                })"
+                                       class="btn btn-sm btn-primary me-1">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    <a href="@Url.Action(
+                                                "CambiarEstadoInventario",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = item.IdInventario
+                                                })"
+                                       class="btn btn-sm btn-secondary"
+                                       onclick="return confirm('¿Desea cambiar el estado de este registro de inventario?');">
+
+                                        <i class="bi bi-arrow-repeat"></i>
+
+                                        Cambiar estado
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay registros de inventario actualmente.
+
+            </div>
+        }
+
+
+    </div>
+
+</section>

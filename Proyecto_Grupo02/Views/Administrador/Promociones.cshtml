@@ -1,0 +1,251 @@
+﻿@using System.Linq
+@model IEnumerable<Proyecto_Grupo02.Models.AdministradorPromocionViewModel>
+
+@{
+    ViewBag.Title = "Promociones";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Gestión de promociones</h3>
+
+    <p class="page-subtitle">
+        Consulta y administra las promociones de KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+
+            @TempData["Mensaje"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+            </button>
+
+        </div>
+    }
+
+
+    <div class="ka-module-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <span class="ka-module-label">
+                    Promociones
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Promociones registradas
+                </h4>
+
+            </div>
+
+
+            <div>
+
+                <a href="@Url.Action(
+                            "AgregarPromocion",
+                            "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Agregar promoción
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Promoción
+                            </th>
+
+                            <th>
+                                Descripción
+                            </th>
+
+                            <th>
+                                Descuento
+                            </th>
+
+                            <th>
+                                Inicio
+                            </th>
+
+                            <th>
+                                Fin
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var promocion in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <strong>
+                                        @promocion.Nombre
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(
+                                            promocion.Descripcion))
+                                    {
+                                        @promocion.Descripcion
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin descripción
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="badge bg-primary">
+                                        @promocion.Descuento.ToString("N0")%
+                                    </span>
+
+                                </td>
+
+
+                                <td>
+
+                                    @promocion.FechaInicio.ToString(
+                                        "dd/MM/yyyy"
+                                    )
+
+                                </td>
+
+
+                                <td>
+
+                                    @promocion.FechaFin.ToString(
+                                        "dd/MM/yyyy"
+                                    )
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (promocion.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @promocion.Estado
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a href="@Url.Action(
+                                                "EditarPromocion",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = promocion.IdPromocion
+                                                })"
+                                       class="btn btn-sm btn-primary me-1">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    <a href="@Url.Action(
+                                                "CambiarEstadoPromocion",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = promocion.IdPromocion
+                                                })"
+                                       class="btn btn-sm btn-secondary"
+                                       onclick="return confirm('¿Desea cambiar el estado de esta promoción?');">
+
+                                        <i class="bi bi-arrow-repeat"></i>
+
+                                        Cambiar estado
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay promociones registradas actualmente.
+
+            </div>
+        }
+
+    </div>
+
+</section>

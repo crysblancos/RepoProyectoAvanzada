@@ -1,0 +1,288 @@
+﻿@model Proyecto_Grupo02.Models.AdministradorVendedorFormularioViewModel
+
+@{
+    ViewBag.Title = "Agregar vendedor";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Agregar vendedor</h3>
+
+    <p class="page-subtitle">
+        Registra un nuevo vendedor en KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+
+        <div class="mb-4">
+
+            <span class="ka-module-label">
+                Nuevo vendedor
+            </span>
+
+            <h4 class="mt-2">
+                Información del vendedor
+            </h4>
+
+            <p class="text-muted">
+                Completa la información para crear la cuenta del vendedor.
+            </p>
+
+        </div>
+
+
+        @using (Html.BeginForm(
+            "AgregarVendedor",
+            "Administrador",
+            FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(
+                true,
+                "",
+                new
+                {
+                    @class = "text-danger mb-3"
+                })
+
+
+            <div class="row">
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Identificación
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Identificacion,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ingrese la identificación"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Identificacion,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Nombre
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Nombre,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ingrese el nombre"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Nombre,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Primer apellido
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Apellido1,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ingrese el primer apellido"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Apellido1,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Segundo apellido
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Apellido2,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ingrese el segundo apellido"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Correo electrónico
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.CorreoElectronico,
+                        new
+                        {
+                            @class = "form-control",
+                            type = "email",
+                            placeholder = "vendedor@kafashion.com"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.CorreoElectronico,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Teléfono
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Telefono,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ejemplo: 8888-8888"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Contraseña
+                    </label>
+
+                    @Html.PasswordFor(
+                        m => m.Contrasenna,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ingrese una contraseña"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Contrasenna,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                    <small class="text-muted">
+                        Esta contraseña será utilizada por el vendedor para iniciar sesión.
+                    </small>
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label d-block">
+                        Estado
+                    </label>
+
+
+                    <div class="form-check form-switch mt-2">
+
+                        @Html.CheckBoxFor(
+                            m => m.Estado,
+                            new
+                            {
+                                @class = "form-check-input"
+                            })
+
+                        <label class="form-check-label">
+                            Vendedor activo
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-12 mt-4">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-person-plus-fill"></i>
+
+                        Guardar vendedor
+
+                    </button>
+
+
+                    <a href="@Url.Action(
+                                "Vendedores",
+                                "Administrador")"
+                       class="btn btn-secondary ms-2">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancelar
+
+                    </a>
+
+                </div>
+
+
+            </div>
+        }
+
+
+    </div>
+
+</section>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

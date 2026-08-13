@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdministradorViewModels.cs" />
     <Compile Include="Models\CarritoViewModel.cs" />
     <Compile Include="Models\ContactoModel.cs" />
     <Compile Include="Models\LogActionFilter.cs" />
@@ -349,6 +351,28 @@
     <Content Include="Views\Vendedor\PersonalShopper.cshtml" />
     <Content Include="Views\Vendedor\Contactos.cshtml" />
     <Content Include="Views\Vendedor\Clientes.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdministrador.cshtml" />
+    <Content Include="Views\Administrador\Principal.cshtml" />
+    <Content Include="Views\Administrador\Productos.cshtml" />
+    <Content Include="Views\Administrador\AgregarProducto.cshtml" />
+    <Content Include="Views\Administrador\EditarProducto.cshtml" />
+    <Content Include="Views\Administrador\Categorias.cshtml" />
+    <Content Include="Views\Administrador\AgregarCategoria.cshtml" />
+    <Content Include="Views\Administrador\EditarCategoria.cshtml" />
+    <Content Include="Views\Administrador\Inventario.cshtml" />
+    <Content Include="Views\Administrador\AgregarInventario.cshtml" />
+    <Content Include="Views\Administrador\EditarInventario.cshtml" />
+    <Content Include="Views\Administrador\Sucursales.cshtml" />
+    <Content Include="Views\Administrador\AgregarSucursal.cshtml" />
+    <Content Include="Views\Administrador\EditarSucursal.cshtml" />
+    <Content Include="Views\Administrador\Promociones.cshtml" />
+    <Content Include="Views\Administrador\AgregarPromocion.cshtml" />
+    <Content Include="Views\Administrador\EditarPromocion.cshtml" />
+    <Content Include="Views\Administrador\Clientes.cshtml" />
+    <Content Include="Views\Administrador\EditarCliente.cshtml" />
+    <Content Include="Views\Administrador\Vendedores.cshtml" />
+    <Content Include="Views\Administrador\AgregarVendedor.cshtml" />
+    <Content Include="Views\Administrador\EditarVendedor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

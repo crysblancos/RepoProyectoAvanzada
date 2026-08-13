@@ -1,0 +1,235 @@
+﻿@model IEnumerable<Proyecto_Grupo02.Models.AdministradorProductoViewModel>
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<div class="page-title">
+    <h3>Gestión de productos</h3>
+
+    <p class="page-subtitle">
+        Consulta y administra los productos registrados en KA Fashion.
+    </p>
+</div>
+
+
+<section class="section">
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+            @TempData["Mensaje"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+            </button>
+
+        </div>
+    }
+
+
+    <div class="ka-module-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+                <span class="ka-module-label">
+                    Productos
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Productos registrados
+                </h4>
+            </div>
+
+
+            <div>
+                <a href="@Url.Action("AgregarProducto", "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Agregar producto
+                </a>
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Producto
+                            </th>
+
+                            <th>
+                                Categoría
+                            </th>
+
+                            <th>
+                                Precio
+                            </th>
+
+                            <th>
+                                Talla
+                            </th>
+
+                            <th>
+                                Color
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var producto in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        @producto.Nombre
+                                    </strong>
+                                </td>
+
+
+                                <td>
+                                    @producto.Categoria
+                                </td>
+
+
+                                <td>
+                                    ₡@producto.Precio.ToString("N2")
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(producto.Talla))
+                                    {
+                                        @producto.Talla
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin talla
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(producto.Color))
+                                    {
+                                        @producto.Color
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin color
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (producto.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @producto.Estado
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a href="@Url.Action(
+                                                "EditarProducto",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = producto.IdProducto
+                                                })"
+                                       class="btn btn-sm btn-primary me-1">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    <a href="@Url.Action(
+                                                "CambiarEstadoProducto",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = producto.IdProducto
+                                                })"
+                                       class="btn btn-sm btn-secondary"
+                                       onclick="return confirm('¿Desea cambiar el estado de este producto?');">
+
+                                        <i class="bi bi-arrow-repeat"></i>
+
+                                        Cambiar estado
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay productos registrados actualmente.
+
+            </div>
+        }
+
+    </div>
+
+</section>

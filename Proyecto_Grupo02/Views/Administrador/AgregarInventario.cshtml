@@ -1,0 +1,254 @@
+﻿@model Proyecto_Grupo02.Models.AdministradorInventarioFormularioViewModel
+
+@{
+    ViewBag.Title = "Agregar inventario";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Agregar inventario</h3>
+
+    <p class="page-subtitle">
+        Registra las existencias de un producto en una sucursal.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+
+        <div class="mb-4">
+
+            <span class="ka-module-label">
+                Nuevo inventario
+            </span>
+
+            <h4 class="mt-2">
+                Información del inventario
+            </h4>
+
+            <p class="text-muted">
+                Selecciona el producto y la sucursal e indica sus existencias.
+            </p>
+
+        </div>
+
+
+        @using (Html.BeginForm(
+            "AgregarInventario",
+            "Administrador",
+            FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(
+                true,
+                "",
+                new
+                {
+                    @class = "text-danger mb-3"
+                })
+
+
+            <div class="row">
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Producto
+                    </label>
+
+                    @Html.DropDownListFor(
+                        m => m.IdProducto,
+                        Model.Productos,
+                        "Seleccione un producto",
+                        new
+                        {
+                            @class = "form-select"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.IdProducto,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Sucursal
+                    </label>
+
+                    @Html.DropDownListFor(
+                        m => m.IdSucursal,
+                        Model.Sucursales,
+                        "Seleccione una sucursal",
+                        new
+                        {
+                            @class = "form-select"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.IdSucursal,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Talla
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Talla,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ejemplo: S, M, L"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Talla,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Color
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Color,
+                        new
+                        {
+                            @class = "form-control",
+                            placeholder = "Ejemplo: Rosa"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Color,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Existencias
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Existencias,
+                        new
+                        {
+                            @class = "form-control",
+                            type = "number",
+                            min = "0"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Existencias,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Estado
+                    </label>
+
+                    @Html.DropDownListFor(
+                        m => m.IdEstado,
+                        Model.Estados,
+                        "Seleccione un estado",
+                        new
+                        {
+                            @class = "form-select"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.IdEstado,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-12 mt-3">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-plus-circle"></i>
+
+                        Guardar inventario
+
+                    </button>
+
+
+                    <a href="@Url.Action(
+                                "Inventario",
+                                "Administrador")"
+                       class="btn btn-secondary ms-2">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancelar
+
+                    </a>
+
+                </div>
+
+
+            </div>
+        }
+
+
+    </div>
+
+</section>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

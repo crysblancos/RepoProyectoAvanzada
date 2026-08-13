@@ -1,0 +1,146 @@
+﻿@model Proyecto_Grupo02.Models.AdministradorCategoriaFormularioViewModel
+
+@{
+    ViewBag.Title = "Editar categoría";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Editar categoría</h3>
+
+    <p class="page-subtitle">
+        Modifica la información de la categoría seleccionada.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="mb-4">
+
+            <span class="ka-module-label">
+                Categoría
+            </span>
+
+            <h4 class="mt-2">
+                Información de la categoría
+            </h4>
+
+        </div>
+
+
+        @using (Html.BeginForm(
+            "EditarCategoria",
+            "Administrador",
+            FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(
+                m => m.IdCategoria)
+
+
+            <div class="row">
+
+
+                <div class="col-md-8 mb-3">
+
+                    <label class="form-label">
+                        Nombre
+                    </label>
+
+                    @Html.TextBoxFor(
+                        m => m.Nombre,
+                        new
+                        {
+                            @class = "form-control"
+                        })
+
+                    @Html.ValidationMessageFor(
+                        m => m.Nombre,
+                        "",
+                        new
+                        {
+                            @class = "text-danger"
+                        })
+
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Estado
+                    </label>
+
+                    @Html.DropDownListFor(
+                        m => m.IdEstado,
+                        Model.Estados,
+                        new
+                        {
+                            @class = "form-select"
+                        })
+
+                </div>
+
+
+                <div class="col-md-12 mb-3">
+
+                    <label class="form-label">
+                        Descripción
+                    </label>
+
+                    @Html.TextAreaFor(
+                        m => m.Descripcion,
+                        new
+                        {
+                            @class = "form-control",
+                            rows = "4"
+                        })
+
+                </div>
+
+
+                <div class="col-md-12 mt-3">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Guardar cambios
+
+                    </button>
+
+
+                    <a href="@Url.Action(
+                                "Categorias",
+                                "Administrador")"
+                       class="btn btn-secondary ms-2">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancelar
+
+                    </a>
+
+                </div>
+
+
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

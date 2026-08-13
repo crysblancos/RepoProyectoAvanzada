@@ -1,0 +1,212 @@
+﻿@using System.Linq
+@model IEnumerable<Proyecto_Grupo02.Models.AdministradorCategoriaViewModel>
+
+@{
+    ViewBag.Title = "Categorías";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Gestión de categorías</h3>
+
+    <p class="page-subtitle">
+        Consulta y administra las categorías de productos de KA Fashion.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show"
+             role="alert">
+
+            @TempData["Mensaje"]
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Cerrar">
+            </button>
+
+        </div>
+    }
+
+
+    <div class="ka-module-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <span class="ka-module-label">
+                    Categorías
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Categorías registradas
+                </h4>
+
+            </div>
+
+
+            <div>
+
+                <a href="@Url.Action(
+                            "AgregarCategoria",
+                            "Administrador")"
+                   class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Agregar categoría
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Categoría
+                            </th>
+
+                            <th>
+                                Descripción
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                            <th class="text-center">
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var categoria in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <strong>
+                                        @categoria.Nombre
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (!string.IsNullOrWhiteSpace(
+                                            categoria.Descripcion))
+                                    {
+                                        @categoria.Descripcion
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin descripción
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (categoria.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @categoria.Estado
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td class="text-center">
+
+                                    <a href="@Url.Action(
+                                                "EditarCategoria",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = categoria.IdCategoria
+                                                })"
+                                       class="btn btn-sm btn-primary me-1">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                        Editar
+
+                                    </a>
+
+
+                                    <a href="@Url.Action(
+                                                "CambiarEstadoCategoria",
+                                                "Administrador",
+                                                new
+                                                {
+                                                    id = categoria.IdCategoria
+                                                })"
+                                       class="btn btn-sm btn-secondary"
+                                       onclick="return confirm('¿Desea cambiar el estado de esta categoría?');">
+
+                                        <i class="bi bi-arrow-repeat"></i>
+
+                                        Cambiar estado
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay categorías registradas actualmente.
+
+            </div>
+        }
+
+    </div>
+
+</section>
