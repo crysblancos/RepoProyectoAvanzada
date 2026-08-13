@@ -112,10 +112,14 @@
                     <strong>@Model.Total.ToString("₡#,##0.00")</strong>
                 </div>
 
-                <button type="button" class="btn btn-primary ka-full-button" id="btnContinuarPedido" @(Model.Items.Count == 0 ? "disabled" : "")>
+                <a href="@Url.Action("Pedido", "Pedido")"
+                   class="btn btn-primary ka-full-button"
+                   id="btnContinuarPedido">
+
                     Continuar con el pedido
                     <i class="bi bi-arrow-right"></i>
-                </button>
+
+                </a>
 
                 <div class="ka-safe-purchase">
                     <i class="bi bi-shield-check"></i>

@@ -1,0 +1,188 @@
+﻿@model Proyecto_Grupo02.Models.PedidoConfirmacionViewModel
+
+@{
+    ViewBag.Title = "Confirmación";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Pedido confirmado</h3>
+
+    <p class="page-subtitle">
+        Tu pedido fue registrado correctamente.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-checkout-steps">
+
+        <div class="ka-checkout-step">
+            <span>1</span>
+            <strong>Carrito</strong>
+        </div>
+
+        <div class="ka-checkout-line"></div>
+
+        <div class="ka-checkout-step">
+            <span>2</span>
+            <strong>Datos del pedido</strong>
+        </div>
+
+        <div class="ka-checkout-line"></div>
+
+        <div class="ka-checkout-step active">
+            <span>3</span>
+            <strong>Confirmación</strong>
+        </div>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="ka-form-container text-center">
+
+                <div style="font-size: 4rem;
+                            color: #198754;
+                            margin-bottom: 20px;">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                </div>
+
+
+                <span class="ka-module-label">
+                    Compra realizada
+                </span>
+
+
+                <h2 class="mb-3">
+                    ¡Gracias por tu pedido!
+                </h2>
+
+
+                <p class="mb-4">
+
+                    Tu pedido fue registrado correctamente
+                    y será preparado en la sucursal seleccionada.
+
+                </p>
+
+
+                <div class="ka-order-summary text-start">
+
+                    <div class="ka-summary-row">
+
+                        <span>Número de pedido</span>
+
+                        <strong>
+                            #@Model.IdPedido
+                        </strong>
+
+                    </div>
+
+
+                    <div class="ka-summary-row">
+
+                        <span>Fecha</span>
+
+                        <strong>
+                            @Model.FechaPedido.ToString("dd/MM/yyyy HH:mm")
+                        </strong>
+
+                    </div>
+
+
+                    <div class="ka-summary-row">
+
+                        <span>Método de entrega</span>
+
+                        <strong>
+                            @Model.MetodoEntrega
+                        </strong>
+
+                    </div>
+
+
+                    <div class="ka-summary-row">
+
+                        <span>Sucursal</span>
+
+                        <strong>
+                            @Model.Sucursal
+                        </strong>
+
+                    </div>
+
+
+                    @if (!String.IsNullOrEmpty(Model.Observaciones))
+                    {
+                        <div class="ka-summary-row">
+
+                            <span>Observaciones</span>
+
+                            <strong>
+                                @Model.Observaciones
+                            </strong>
+
+                        </div>
+                    }
+
+
+                    <div class="ka-summary-divider"></div>
+
+
+                    <div class="ka-summary-row ka-summary-total">
+
+                        <span>Total</span>
+
+                        <strong>
+                            @Model.Total.ToString("₡#,##0.00")
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mt-4">
+
+                    <a href="@Url.Action(
+                                "Producto",
+                                "Producto"
+                             )"
+                       class="btn btn-primary">
+
+                        <i class="bi bi-bag-fill"></i>
+
+                        Seguir comprando
+
+                    </a>
+
+
+                    <a href="@Url.Action(
+                                "Principal",
+                                "Home"
+                             )"
+                       class="btn btn-outline-primary ms-2">
+
+                        Volver al inicio
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

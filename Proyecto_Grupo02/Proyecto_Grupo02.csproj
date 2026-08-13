@@ -132,6 +132,7 @@
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PersonalShopperController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -183,6 +184,8 @@
     <Compile Include="Models\CarritoViewModel.cs" />
     <Compile Include="Models\ContactoModel.cs" />
     <Compile Include="Models\LogActionFilter.cs" />
+    <Compile Include="Models\PedidoConfirmacionViewModel.cs" />
+    <Compile Include="Models\PedidoModel.cs" />
     <Compile Include="Models\PersonalShopperModel.cs" />
     <Compile Include="Models\ProductoViewModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
@@ -320,6 +323,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\PedidoConfirmacionViewModel\" />
+    <Folder Include="Views\PedidoModel\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EF\ENTITU.edmx">
@@ -337,6 +342,8 @@
     <Content Include="Views\PersonalShopper\PersonalShopper.cshtml" />
     <Content Include="Views\Contacto\Contacto.cshtml" />
     <Content Include="Views\Usuario\Perfil.cshtml" />
+    <Content Include="Views\Pedido\Pedido.cshtml" />
+    <Content Include="Views\Pedido\Confirmacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

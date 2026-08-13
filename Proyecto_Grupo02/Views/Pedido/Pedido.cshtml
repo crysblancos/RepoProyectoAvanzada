@@ -1,0 +1,204 @@
+﻿@model Proyecto_Grupo02.Models.PedidoModel
+
+@{
+    ViewBag.Title = "Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <h3>Datos del pedido</h3>
+
+    <p class="page-subtitle">
+        Completa la información necesaria para continuar con tu compra.
+    </p>
+</div>
+
+<section class="section">
+
+    <div class="ka-checkout-steps">
+
+        <div class="ka-checkout-step">
+            <span>1</span>
+            <strong>Carrito</strong>
+        </div>
+
+        <div class="ka-checkout-line"></div>
+
+        <div class="ka-checkout-step active">
+            <span>2</span>
+            <strong>Datos del pedido</strong>
+        </div>
+
+        <div class="ka-checkout-line"></div>
+
+        <div class="ka-checkout-step">
+            <span>3</span>
+            <strong>Confirmación</strong>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-lg-8 mb-4">
+
+            <div class="ka-form-container">
+
+                <div class="ka-form-introduction">
+
+                    <span class="ka-module-label">
+                        Información de entrega
+                    </span>
+
+                    <h4>Completa tu pedido</h4>
+
+                    <p>
+                        Selecciona la sucursal donde deseas retirar tu compra.
+                    </p>
+
+                </div>
+
+
+                @using (Html.BeginForm(
+                    "Confirmar",
+                    "Pedido",
+                    FormMethod.Post,
+                    new { id = "formPedido" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-4">
+
+                            @Html.LabelFor(
+                                          m => m.MetodoEntrega,
+                                          "Método de entrega *",
+                                          new { @class = "form-label" }
+                                      )
+
+                            @Html.DropDownListFor(
+                                          m => m.MetodoEntrega,
+                                          new List<SelectListItem>
+                                          {
+                                    new SelectListItem
+                                    {
+                                        Text = "Retiro en sucursal",
+                                        Value = "Retiro en sucursal"
+                                    }
+                  },
+                                          new
+                                          {
+                                              @class = "form-select ka-form-control"
+                                          }
+                                      )
+
+                        </div>
+
+
+                        <div class="col-md-6 mb-4">
+
+                            @Html.LabelFor(
+                                          m => m.IdSucursal,
+                                          "Sucursal *",
+                                          new { @class = "form-label" }
+                                      )
+
+                            @Html.DropDownListFor(
+                                          m => m.IdSucursal,
+                                          (SelectList)ViewBag.Sucursales,
+                                          "Seleccione una sucursal",
+                                          new
+                                          {
+                                              @class = "form-select ka-form-control"
+                                          }
+                                      )
+
+                            @Html.ValidationMessageFor(
+                                          m => m.IdSucursal,
+                                          "",
+                                          new
+                                          {
+                                              @class = "invalid-feedback d-block"
+                                          }
+                                      )
+
+                        </div>
+
+
+                        <div class="col-12 mb-4">
+
+                            @Html.LabelFor(
+                                          m => m.Observaciones,
+                                          "Observaciones",
+                                          new { @class = "form-label" }
+                                      )
+
+                            @Html.TextAreaFor(
+                                          m => m.Observaciones,
+                                          new
+                                          {
+                                              @class = "form-control ka-form-control",
+                                              rows = 5,
+                                              placeholder =
+                                              "Puedes agregar alguna indicación adicional..."
+                                          }
+                                      )
+
+                        </div>
+
+
+                        <div class="col-12">
+
+                            <button type="submit"
+                                    class="btn btn-primary ka-submit-button">
+
+                                Continuar a confirmación
+                                <i class="bi bi-arrow-right"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-4">
+
+            <div class="ka-order-summary">
+
+                <span class="ka-module-label">
+                    Pedido
+                </span>
+
+                <h4>Antes de continuar</h4>
+
+                <p>
+                    En el siguiente paso podrás revisar los datos
+                    antes de confirmar definitivamente tu compra.
+                </p>
+
+                <div class="ka-safe-purchase">
+
+                    <i class="bi bi-shop"></i>
+
+                    <span>
+                        El pedido será preparado en la sucursal seleccionada.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
