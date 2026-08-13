@@ -1,48 +1,146 @@
 ﻿@model List<Proyecto_Grupo02.Models.ProductoListItemViewModel>
+
 @{
     ViewBag.Title = "Productos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="page-title mb-4">
+
     <div class="row">
+
         <div class="col-12">
+
             <h3>Productos</h3>
-            <p>Descubre nuestra colección de productos disponibles.</p>
+
+            <p>
+                Descubre nuestra colección de productos disponibles.
+            </p>
+
         </div>
+
     </div>
+
 </div>
 
+
 <section class="section">
+
+
+    <div class="card mb-4">
+
+        <div class="card-body">
+
+            <h5 class="mb-3">
+                Categorías
+            </h5>
+
+            <div class="d-flex flex-wrap gap-2">
+
+                <a href="@Url.Action("Producto", "Producto")"
+                   class="btn @(ViewBag.IdCategoria == null ? "btn-primary" : "btn-outline-primary")">
+
+                    Todos
+
+                </a>
+
+                @if (ViewBag.Categorias != null)
+                {
+                    foreach (var categoria in ViewBag.Categorias)
+                    {
+                        bool seleccionada =
+                            ViewBag.IdCategoria != null &&
+                            (int)ViewBag.IdCategoria == categoria.IdCategoria;
+
+                        <a href="@Url.Action(
+                                    "Producto",
+                                    "Producto",
+                                    new { idCategoria = categoria.IdCategoria }
+                                )"
+                           class="btn @(seleccionada ? "btn-primary" : "btn-outline-primary")">
+
+                            @categoria.Nombre
+
+                        </a>
+                    }
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+
     <div class="row">
+
         @if (Model == null || Model.Count == 0)
         {
+
             <div class="col-12">
-                <p>No hay productos disponibles en este momento.</p>
+
+                <div class="alert alert-light text-center">
+
+                    No hay productos disponibles en esta categoría.
+
+                </div>
+
             </div>
+
         }
         else
         {
+
             foreach (var item in Model)
             {
+
                 <div class="col-lg-4 col-md-6 col-12 mb-4">
+
                     <div class="product-card">
+
                         <div class="product-image-container">
-                            <img src="~/Content/images/@item.Imagen" class="product-image" alt="@item.Nombre">
+
+                            <img src="~/Content/images/@item.Imagen"
+                                 class="product-image"
+                                 alt="@item.Nombre">
+
                         </div>
+
                         <div class="product-card-body">
-                            <h5 class="product-name">@item.Nombre</h5>
-                            <p class="product-price">@item.Precio.ToString("₡#,##0.00")</p>
+
+                            <h5 class="product-name">
+                                @item.Nombre
+                            </h5>
+
+                            <p class="product-price">
+                                @item.Precio.ToString("₡#,##0.00")
+                            </p>
+
                             <div class="product-card-footer">
-                                <a href="@Url.Action("DetalleProducto", "Producto", new { id = item.IdProducto })"
+
+                                <a href="@Url.Action(
+                                            "DetalleProducto",
+                                            "Producto",
+                                            new { id = item.IdProducto }
+                                         )"
                                    class="product-button">
+
                                     Ver artículo
+
                                 </a>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             }
+
         }
+
     </div>
+
 </section>
