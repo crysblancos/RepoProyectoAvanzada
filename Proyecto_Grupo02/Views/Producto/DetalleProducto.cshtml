@@ -95,4 +95,103 @@
             </div>
         </div>
     </div>
+
+    <div class="card product-detail-card mt-4">
+        <div class="card-body">
+
+            <h3 class="mb-3">Reseñas de clientes</h3>
+
+            @if (TempData["MensajeExito"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["MensajeExito"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            }
+
+            @if (TempData["MensajeError"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["MensajeError"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            }
+
+            @if (Model.Resenas != null && Model.Resenas.Count > 0)
+            {
+                var textoReseñas = Model.Resenas.Count == 1 ? "reseña" : "reseñas";
+
+                <p class="mb-4">
+                    Calificación promedio:
+                    <strong>@Model.PromedioCalificacion.ToString("0.0") / 5</strong>
+                    (@Model.Resenas.Count @textoReseñas)
+                </p>
+
+                foreach (var resena in Model.Resenas)
+                {
+                    <div class="product-detail-row mb-3">
+                        <div>
+                            <strong>@resena.NombreUsuario</strong>
+                            <span class="ms-2">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= resena.Calificacion)
+                                    {
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-star text-warning"></i>
+                                    }
+                                }
+                            </span>
+                            <span class="ms-2 text-muted">@resena.Fecha.ToString("dd/MM/yyyy")</span>
+                        </div>
+                        <p class="mb-0">@resena.Comentario</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="mb-4">Este producto todavía no tiene reseñas.</p>
+            }
+
+            @if (Session["ConsecutivoUsuario"] != null)
+            {
+                using (Html.BeginForm("AgregarResena", "Producto", FormMethod.Post))
+                {
+                    @Html.Hidden("idProducto", Model.IdProducto)
+
+                    <div class="mb-3">
+                        <label class="form-label">Calificación</label>
+                        <select name="calificacion" class="form-select" style="max-width:200px;">
+                            <option value="5">5 - Excelente</option>
+                            <option value="4">4 - Muy bueno</option>
+                            <option value="3">3 - Bueno</option>
+                            <option value="2">2 - Regular</option>
+                            <option value="1">1 - Malo</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Comentario</label>
+                        <textarea name="comentario" class="form-control" rows="3" placeholder="Cuéntanos tu experiencia con este producto..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-send-fill"></i>
+                        Enviar reseña
+                    </button>
+                }
+            }
+            else
+            {
+                <p>
+                    <a href="@Url.Action("Index", "Home")">Inicia sesión</a>
+                    para dejar tu reseña de este producto.
+                </p>
+            }
+
+        </div>
+    </div>
 </section>

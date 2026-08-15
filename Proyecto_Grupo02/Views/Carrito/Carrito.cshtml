@@ -100,6 +100,14 @@
                     <strong>@Model.Subtotal.ToString("₡#,##0.00")</strong>
                 </div>
 
+                @if (Model.Items.Count > 0 && Model.DescuentoPromocion > 0)
+                {
+                    <div class="ka-summary-row">
+                        <span>Promoción (@Model.NombrePromocion, @Model.DescuentoPromocion.ToString("0.##")%)</span>
+                        <strong>-@Model.MontoDescuento.ToString("₡#,##0.00")</strong>
+                    </div>
+                }
+
                 <div class="ka-summary-row">
                     <span>Entrega estimada</span>
                     <strong>@(Model.Items.Count > 0 ? Model.CostoEntrega.ToString("₡#,##0.00") : "₡0,00")</strong>

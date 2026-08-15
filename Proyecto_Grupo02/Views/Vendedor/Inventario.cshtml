@@ -1,0 +1,186 @@
+﻿@using System.Linq
+@model IEnumerable<Proyecto_Grupo02.Models.AdministradorInventarioViewModel>
+
+@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_LayoutVendedor.cshtml";
+}
+
+
+<div class="page-title">
+
+    <h3>Inventario</h3>
+
+    <p class="page-subtitle">
+        Consulta las existencias de productos por sucursal.
+    </p>
+
+</div>
+
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <span class="ka-module-label">
+                    Inventario
+                </span>
+
+                <h4 class="mt-2 mb-0">
+                    Existencias registradas
+                </h4>
+
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Producto
+                            </th>
+
+                            <th>
+                                Sucursal
+                            </th>
+
+                            <th>
+                                Talla
+                            </th>
+
+                            <th>
+                                Color
+                            </th>
+
+                            <th>
+                                Existencias
+                            </th>
+
+                            <th>
+                                Actualización
+                            </th>
+
+                            <th>
+                                Estado
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+
+                                    <strong>
+                                        @item.Producto
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+                                    @item.Sucursal
+                                </td>
+
+
+                                <td>
+                                    @item.Talla
+                                </td>
+
+
+                                <td>
+                                    @item.Color
+                                </td>
+
+
+                                <td>
+
+                                    @if (item.Existencias > 10)
+                                    {
+                                        <span class="badge bg-success">
+                                            @item.Existencias
+                                        </span>
+                                    }
+                                    else if (item.Existencias > 0)
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                            @item.Existencias
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">
+                                            0
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    @item.FechaActualizacion.ToString(
+                                        "dd/MM/yyyy HH:mm"
+                                    )
+
+                                </td>
+
+
+                                <td>
+
+                                    @if (item.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @item.Estado
+                                        </span>
+                                    }
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+
+                No hay registros de inventario actualmente.
+
+            </div>
+        }
+
+
+    </div>
+
+</section>

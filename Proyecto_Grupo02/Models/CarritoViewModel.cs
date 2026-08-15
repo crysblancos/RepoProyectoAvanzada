@@ -20,7 +20,10 @@ namespace Proyecto_Grupo02.Models
     {
         public List<CarritoItemViewModel> Items { get; set; } = new List<CarritoItemViewModel>();
         public decimal CostoEntrega { get; set; } = 2500;
+        public string NombrePromocion { get; set; }
+        public decimal DescuentoPromocion { get; set; }
         public decimal Subtotal => Items.Sum(i => i.Subtotal);
-        public decimal Total => Items.Count > 0 ? Subtotal + CostoEntrega : 0;
+        public decimal MontoDescuento => Subtotal * DescuentoPromocion / 100;
+        public decimal Total => Items.Count > 0 ? Subtotal - MontoDescuento + CostoEntrega : 0;
     }
 }

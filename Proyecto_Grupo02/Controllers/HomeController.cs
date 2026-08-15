@@ -1,4 +1,5 @@
-﻿using Proyecto_Grupo02.EF;
+﻿using Proyecto_Grupo02.Data;
+using Proyecto_Grupo02.EF;
 using Proyecto_Grupo02.Models;
 using Proyecto_Grupo02.Services;
 using System;
@@ -274,6 +275,21 @@ namespace Proyecto_Grupo02.Controllers
         [HttpGet]
         public ActionResult Principal()
         {
+            using (var context = new CatalogoDbContext())
+            {
+                var ahora = DateTime.Now;
+
+                var promocionActiva = context.Promociones
+                    .Where(p =>
+                        p.IdEstado == EstadosConsts.Activo &&
+                        p.FechaInicio <= ahora &&
+                        p.FechaFin >= ahora)
+                    .OrderByDescending(p => p.Descuento)
+                    .FirstOrDefault();
+
+                ViewBag.PromocionActiva = promocionActiva;
+            }
+
             return View();
         }
 

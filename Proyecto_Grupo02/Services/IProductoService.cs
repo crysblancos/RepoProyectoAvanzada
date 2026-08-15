@@ -12,5 +12,7 @@ namespace Proyecto_Grupo02.Services
         Task<List<tbCategoria>> ObtenerCategoriasAsync();
 
         Task<ProductoDetalleViewModel> ObtenerDetalleAsync(int idProducto);
+
+        Task AgregarResenaAsync(int idUsuario, int idProducto, int calificacion, string comentario);
     }
 }

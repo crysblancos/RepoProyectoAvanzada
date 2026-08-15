@@ -15,6 +15,27 @@
 </div>
 
 <section class="section">
+
+    @{
+        var promocionActiva = ViewBag.PromocionActiva as Proyecto_Grupo02.EF.tbPromocion;
+    }
+
+    @if (promocionActiva != null)
+    {
+        <div class="alert alert-primary d-flex justify-content-between align-items-center ka-promo-banner" role="alert">
+
+            <div>
+                <strong>@promocionActiva.Nombre</strong>
+                <span>&mdash; @promocionActiva.Descripcion</span>
+            </div>
+
+            <span class="badge bg-primary fs-6">
+                @promocionActiva.Descuento.ToString("0.##")% de descuento
+            </span>
+
+        </div>
+    }
+
     <div class="ka-main-banner">
         <div class="ka-banner-content">
             <span class="ka-banner-label">

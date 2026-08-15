@@ -57,7 +57,26 @@ namespace Proyecto_Grupo02.Services
                 })
                 .ToListAsync();
 
-            return new CarritoViewModel { Items = items };
+            var promocion = await ObtenerPromocionActivaAsync();
+
+            return new CarritoViewModel
+            {
+                Items = items,
+                NombrePromocion = promocion?.Nombre,
+                DescuentoPromocion = promocion?.Descuento ?? 0
+            };
+        }
+
+        private async Task<tbPromocion> ObtenerPromocionActivaAsync()
+        {
+            var ahora = DateTime.Now;
+
+            return await _context.Promociones
+                .Where(p => p.IdEstado == EstadosConsts.Activo &&
+                            p.FechaInicio <= ahora &&
+                            p.FechaFin >= ahora)
+                .OrderByDescending(p => p.Descuento)
+                .FirstOrDefaultAsync();
         }
 
         public async Task AgregarProductoAsync(int idUsuario, int idProducto, int cantidad, string talla, string color)

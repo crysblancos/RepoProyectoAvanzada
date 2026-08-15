@@ -143,10 +143,28 @@ namespace Proyecto_Grupo02.Controllers
                             detalle.Cantidad;
                     }
 
+                    var promocionActiva =
+                        await _context.Promociones
+                        .Where(p =>
+                            p.IdEstado == EstadosConsts.Activo &&
+                            p.FechaInicio <= DateTime.Now &&
+                            p.FechaFin >= DateTime.Now)
+                        .OrderByDescending(p =>
+                            p.Descuento)
+                        .FirstOrDefaultAsync();
+
+                    decimal descuentoPedido =
+                        promocionActiva != null
+                            ? subtotalPedido *
+                              promocionActiva.Descuento / 100
+                            : 0;
+
                     decimal costoEntrega = 2500;
 
                     decimal totalPedido =
-                        subtotalPedido + costoEntrega;
+                        subtotalPedido -
+                        descuentoPedido +
+                        costoEntrega;
 
 
                     var pedido = new tbPedido
@@ -377,6 +395,169 @@ namespace Proyecto_Grupo02.Controllers
 
 
             return View(modelo);
+        }
+
+
+        public async Task<ActionResult> MisPedidos()
+        {
+            if (Session["ConsecutivoUsuario"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            int idUsuario =
+                Convert.ToInt32(
+                    Session["ConsecutivoUsuario"]
+                );
+
+
+            var pedidos =
+                await _context.Pedidos
+                .Where(p =>
+                    p.IdUsuario == idUsuario)
+                .OrderByDescending(p =>
+                    p.FechaPedido)
+                .Select(p =>
+                    new PedidoHistorialViewModel
+                    {
+                        IdPedido =
+                            p.IdPedido,
+
+                        FechaPedido =
+                            p.FechaPedido,
+
+                        MetodoEntrega =
+                            p.MetodoEntrega,
+
+                        Sucursal =
+                            p.Sucursal.Nombre,
+
+                        Total =
+                            p.Total,
+
+                        Estado =
+                            p.Estado.NombreEstado
+                    }
+                )
+                .ToListAsync();
+
+
+            return View(pedidos);
+        }
+
+
+        public async Task<ActionResult> DetallePedido(int id)
+        {
+            if (Session["ConsecutivoUsuario"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            int idUsuario =
+                Convert.ToInt32(
+                    Session["ConsecutivoUsuario"]
+                );
+
+
+            var pedido =
+                await _context.Pedidos
+                .Where(p =>
+                    p.IdPedido == id &&
+                    p.IdUsuario == idUsuario)
+                .FirstOrDefaultAsync();
+
+
+            if (pedido == null)
+            {
+                return RedirectToAction("MisPedidos");
+            }
+
+
+            var sucursal =
+                await _context.Sucursales
+                .Where(s =>
+                    s.IdSucursal ==
+                    pedido.IdSucursal)
+                .FirstOrDefaultAsync();
+
+
+            var estado =
+                await _context.Estados
+                .Where(e =>
+                    e.IdEstado ==
+                    pedido.IdEstado)
+                .FirstOrDefaultAsync();
+
+
+            var detalles =
+                await _context.PedidoDetalles
+                .Include(d => d.Producto)
+                .Where(d =>
+                    d.IdPedido == id)
+                .Select(d =>
+                    new PedidoHistorialDetalleItemViewModel
+                    {
+                        Producto =
+                            d.Producto.Nombre,
+
+                        Imagen =
+                            d.Producto.Imagen,
+
+                        Talla =
+                            d.Talla,
+
+                        Color =
+                            d.Color,
+
+                        Cantidad =
+                            d.Cantidad,
+
+                        PrecioUnitario =
+                            d.PrecioUnitario,
+
+                        Subtotal =
+                            d.Subtotal
+                    }
+                )
+                .ToListAsync();
+
+
+            var modeloDetalle =
+                new PedidoHistorialDetalleViewModel
+                {
+                    IdPedido =
+                        pedido.IdPedido,
+
+                    FechaPedido =
+                        pedido.FechaPedido,
+
+                    MetodoEntrega =
+                        pedido.MetodoEntrega,
+
+                    Sucursal =
+                        sucursal != null
+                            ? sucursal.Nombre
+                            : "",
+
+                    Observaciones =
+                        pedido.Observaciones,
+
+                    Estado =
+                        estado != null
+                            ? estado.NombreEstado
+                            : "",
+
+                    Total =
+                        pedido.Total,
+
+                    Detalles =
+                        detalles
+                };
+
+
+            return View(modeloDetalle);
         }
     }
 }

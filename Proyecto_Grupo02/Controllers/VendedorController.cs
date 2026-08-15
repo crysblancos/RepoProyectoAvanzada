@@ -350,6 +350,57 @@ namespace Proyecto_Grupo02.Controllers
         }
 
 
+        public ActionResult Inventario()
+        {
+            if (!EsVendedor())
+            {
+                return RedirectToAction(
+                    "Index",
+                    "Home"
+                );
+            }
+
+
+            var inventario =
+                (from i in _context.Inventarios
+                 join e in _context.Estados
+                     on i.IdEstado equals e.IdEstado
+
+                 select new AdministradorInventarioViewModel
+                 {
+                     IdInventario =
+                         i.IdInventario,
+
+                     Producto =
+                         i.Producto.Nombre,
+
+                     Sucursal =
+                         i.Sucursal.Nombre,
+
+                     Talla =
+                         i.Talla,
+
+                     Color =
+                         i.Color,
+
+                     Existencias =
+                         i.Existencias,
+
+                     FechaActualizacion =
+                         i.FechaActualizacion,
+
+                     Estado =
+                         e.NombreEstado
+                 })
+                .OrderBy(i => i.Producto)
+                .ThenBy(i => i.Sucursal)
+                .ToList();
+
+
+            return View(inventario);
+        }
+
+
         public ActionResult Clientes()
         {
             if (!EsVendedor())

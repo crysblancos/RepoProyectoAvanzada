@@ -23,4 +23,59 @@ namespace Proyecto_Grupo02.Models
 
         public decimal Total { get; set; }
     }
+
+
+    public class PedidoHistorialViewModel
+    {
+        public int IdPedido { get; set; }
+
+        public DateTime FechaPedido { get; set; }
+
+        public string MetodoEntrega { get; set; }
+
+        public string Sucursal { get; set; }
+
+        public decimal Total { get; set; }
+
+        public string Estado { get; set; }
+    }
+
+
+    public class PedidoHistorialDetalleItemViewModel
+    {
+        public string Producto { get; set; }
+
+        public string Imagen { get; set; }
+
+        public string Talla { get; set; }
+
+        public string Color { get; set; }
+
+        public int Cantidad { get; set; }
+
+        public decimal PrecioUnitario { get; set; }
+
+        public decimal Subtotal { get; set; }
+    }
+
+
+    public class PedidoHistorialDetalleViewModel
+    {
+        public int IdPedido { get; set; }
+
+        public DateTime FechaPedido { get; set; }
+
+        public string MetodoEntrega { get; set; }
+
+        public string Sucursal { get; set; }
+
+        public string Observaciones { get; set; }
+
+        public string Estado { get; set; }
+
+        public decimal Total { get; set; }
+
+        public List<PedidoHistorialDetalleItemViewModel> Detalles { get; set; } =
+            new List<PedidoHistorialDetalleItemViewModel>();
+    }
 }

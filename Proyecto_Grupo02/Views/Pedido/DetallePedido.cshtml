@@ -1,0 +1,149 @@
+﻿@using System.Linq
+@model Proyecto_Grupo02.Models.PedidoHistorialDetalleViewModel
+
+@{
+    ViewBag.Title = "Detalle del pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <h3>Detalle del pedido #@Model.IdPedido</h3>
+    <p class="page-subtitle">Revisa la información y los productos de este pedido.</p>
+</div>
+
+<section class="section">
+
+    <div class="row">
+
+        <div class="col-lg-8 mb-4">
+
+            <div class="ka-module-card">
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <span class="ka-module-label">Productos</span>
+                        <h4 class="mt-2 mb-0">Detalle de la compra</h4>
+                    </div>
+                </div>
+
+                @if (Model.Detalles != null && Model.Detalles.Any())
+                {
+                    <div class="table-responsive">
+
+                        <table class="table table-hover align-middle">
+
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Talla</th>
+                                    <th>Color</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio unitario</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach (var item in Model.Detalles)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            <strong>@item.Producto</strong>
+                                        </td>
+
+                                        <td>
+                                            @item.Talla
+                                        </td>
+
+                                        <td>
+                                            @item.Color
+                                        </td>
+
+                                        <td>
+                                            @item.Cantidad
+                                        </td>
+
+                                        <td>
+                                            @item.PrecioUnitario.ToString("₡#,##0.00")
+                                        </td>
+
+                                        <td>
+                                            @item.Subtotal.ToString("₡#,##0.00")
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        No se encontraron productos para este pedido.
+                    </div>
+                }
+
+                <a href="@Url.Action("MisPedidos", "Pedido")" class="ka-continue-shopping">
+                    <i class="bi bi-arrow-left"></i>
+                    Volver a mis pedidos
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="ka-order-summary">
+
+                <span class="ka-module-label">Resumen</span>
+                <h4>Información del pedido</h4>
+
+                <div class="ka-summary-row">
+                    <span>Fecha</span>
+                    <strong>@Model.FechaPedido.ToString("dd/MM/yyyy HH:mm")</strong>
+                </div>
+
+                <div class="ka-summary-row">
+                    <span>Método de entrega</span>
+                    <strong>@Model.MetodoEntrega</strong>
+                </div>
+
+                <div class="ka-summary-row">
+                    <span>Sucursal</span>
+                    <strong>@Model.Sucursal</strong>
+                </div>
+
+                @if (!String.IsNullOrEmpty(Model.Observaciones))
+                {
+                    <div class="ka-summary-row">
+                        <span>Observaciones</span>
+                        <strong>@Model.Observaciones</strong>
+                    </div>
+                }
+
+                <div class="ka-summary-row">
+                    <span>Estado</span>
+                    <strong>@Model.Estado</strong>
+                </div>
+
+                <div class="ka-summary-divider"></div>
+
+                <div class="ka-summary-row ka-summary-total">
+                    <span>Total</span>
+                    <strong>@Model.Total.ToString("₡#,##0.00")</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

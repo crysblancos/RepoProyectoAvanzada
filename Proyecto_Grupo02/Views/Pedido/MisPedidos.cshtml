@@ -1,0 +1,109 @@
+﻿@using System.Linq
+@model List<Proyecto_Grupo02.Models.PedidoHistorialViewModel>
+
+@{
+    ViewBag.Title = "Mis pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-title">
+    <h3>Mis pedidos</h3>
+    <p class="page-subtitle">Consulta el historial de compras realizadas en KA Fashion.</p>
+</div>
+
+<section class="section">
+
+    <div class="ka-module-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+                <span class="ka-module-label">Historial</span>
+                <h4 class="mt-2 mb-0">Pedidos realizados</h4>
+            </div>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>Pedido</th>
+                            <th>Fecha</th>
+                            <th>Método de entrega</th>
+                            <th>Sucursal</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <strong>#@item.IdPedido</strong>
+                                </td>
+
+                                <td>
+                                    @item.FechaPedido.ToString("dd/MM/yyyy HH:mm")
+                                </td>
+
+                                <td>
+                                    @item.MetodoEntrega
+                                </td>
+
+                                <td>
+                                    @item.Sucursal
+                                </td>
+
+                                <td>
+                                    @item.Total.ToString("₡#,##0.00")
+                                </td>
+
+                                <td>
+                                    @if (item.Estado == "Activo")
+                                    {
+                                        <span class="badge bg-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@item.Estado</span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <a href="@Url.Action("DetallePedido", "Pedido", new { id = item.IdPedido })"
+                                       class="btn btn-sm btn-primary">
+                                        <i class="bi bi-eye-fill"></i>
+                                        Ver detalle
+                                    </a>
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Todavía no has realizado ningún pedido.
+            </div>
+        }
+
+    </div>
+
+</section>

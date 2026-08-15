@@ -1,6 +1,7 @@
 ﻿using Proyecto_Grupo02.Data;
 using Proyecto_Grupo02.EF;
 using Proyecto_Grupo02.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace Proyecto_Grupo02.Services
     public class ProductoService : IProductoService
     {
         private readonly CatalogoDbContext _context;
+        private readonly KA_FASHION_BDEntities _usuariosContext;
 
         public ProductoService()
         {
             _context = new CatalogoDbContext();
+            _usuariosContext = new KA_FASHION_BDEntities();
         }
 
         public async Task<List<ProductoListItemViewModel>> ObtenerCatalogoAsync(int? idCategoria = null)
@@ -68,6 +71,8 @@ namespace Proyecto_Grupo02.Services
                             i.IdEstado == EstadosConsts.Activo)
                 .SumAsync(i => (int?)i.Existencias) ?? 0;
 
+            var resenas = await ObtenerResenasAsync(idProducto);
+
             return new ProductoDetalleViewModel
             {
                 IdProducto = producto.IdProducto,
@@ -78,8 +83,63 @@ namespace Proyecto_Grupo02.Services
                 Talla = producto.Talla,
                 Color = producto.Color,
                 Categoria = producto.Categoria?.Nombre,
-                Existencias = existencias
+                Existencias = existencias,
+                Resenas = resenas
             };
+        }
+
+        private async Task<List<ResenaItemViewModel>> ObtenerResenasAsync(int idProducto)
+        {
+            var resenas = await _context.Resenas
+                .Where(r => r.IdProducto == idProducto &&
+                            r.IdEstado == EstadosConsts.Activo)
+                .OrderByDescending(r => r.Fecha)
+                .ToListAsync();
+
+            var idsUsuarios = resenas
+                .Select(r => r.IdUsuario)
+                .Distinct()
+                .ToList();
+
+            var usuarios = _usuariosContext.tbUsuario
+                .Where(u => idsUsuarios.Contains(u.Consecutivo))
+                .ToList();
+
+            return resenas
+                .Select(r =>
+                {
+                    var usuario = usuarios
+                        .FirstOrDefault(u => u.Consecutivo == r.IdUsuario);
+
+                    return new ResenaItemViewModel
+                    {
+                        NombreUsuario = usuario != null
+                            ? usuario.Nombre + " " + usuario.Apellido1
+                            : "Cliente",
+
+                        Calificacion = r.Calificacion,
+                        Comentario = r.Comentario,
+                        Fecha = r.Fecha
+                    };
+                })
+                .ToList();
+        }
+
+        public async Task AgregarResenaAsync(int idUsuario, int idProducto, int calificacion, string comentario)
+        {
+            var resena = new tbResena
+            {
+                Calificacion = calificacion,
+                Comentario = comentario,
+                Fecha = DateTime.Now,
+                IdUsuario = idUsuario,
+                IdProducto = idProducto,
+                IdEstado = EstadosConsts.Activo
+            };
+
+            _context.Resenas.Add(resena);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
