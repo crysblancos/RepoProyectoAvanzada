@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Proyecto_Grupo02.Models
@@ -277,6 +278,67 @@ namespace Proyecto_Grupo02.Models
         public string Contrasenna { get; set; }
 
         public bool Estado { get; set; }
+    }
+
+
+    public class AdministradorPedidoViewModel
+    {
+        public int IdPedido { get; set; }
+
+        public DateTime FechaPedido { get; set; }
+
+        public string Cliente { get; set; }
+
+        public string MetodoEntrega { get; set; }
+
+        public string Sucursal { get; set; }
+
+        public decimal Total { get; set; }
+
+        public string Estado { get; set; }
+    }
+
+
+    public class AdministradorPedidoDetalleItemViewModel
+    {
+        public string Producto { get; set; }
+
+        public string Imagen { get; set; }
+
+        public string Talla { get; set; }
+
+        public string Color { get; set; }
+
+        public int Cantidad { get; set; }
+
+        public decimal PrecioUnitario { get; set; }
+
+        public decimal Subtotal { get; set; }
+    }
+
+
+    public class AdministradorPedidoDetalleViewModel
+    {
+        public int IdPedido { get; set; }
+
+        public DateTime FechaPedido { get; set; }
+
+        public string Cliente { get; set; }
+
+        public string CorreoCliente { get; set; }
+
+        public string MetodoEntrega { get; set; }
+
+        public string Sucursal { get; set; }
+
+        public string Observaciones { get; set; }
+
+        public string Estado { get; set; }
+
+        public decimal Total { get; set; }
+
+        public List<AdministradorPedidoDetalleItemViewModel> Detalles { get; set; } =
+            new List<AdministradorPedidoDetalleItemViewModel>();
     }
 
 }

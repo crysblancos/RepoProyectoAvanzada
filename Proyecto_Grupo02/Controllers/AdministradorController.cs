@@ -2,7 +2,9 @@
 using Proyecto_Grupo02.EF;
 using Proyecto_Grupo02.Models;
 using System;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Proyecto_Grupo02.Controllers
@@ -222,6 +224,30 @@ namespace Proyecto_Grupo02.Controllers
                 .ToList();
         }
 
+        private string GuardarImagenProducto(HttpPostedFileBase archivoImagen)
+        {
+            if (archivoImagen == null || archivoImagen.ContentLength <= 0)
+            {
+                return null;
+            }
+
+
+            var extension =
+                Path.GetExtension(archivoImagen.FileName);
+
+            var nombreArchivo =
+                Guid.NewGuid().ToString("N") + extension;
+
+            var rutaDestino =
+                Server.MapPath("~/Content/images/" + nombreArchivo);
+
+            archivoImagen.SaveAs(rutaDestino);
+
+
+            return nombreArchivo;
+        }
+
+
         [HttpGet]
         public ActionResult AgregarProducto()
         {
@@ -269,7 +295,8 @@ namespace Proyecto_Grupo02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AgregarProducto(
-            AdministradorProductoFormularioViewModel modelo)
+            AdministradorProductoFormularioViewModel modelo,
+            HttpPostedFileBase archivoImagen)
         {
             if (!EsAdministrador())
             {
@@ -321,6 +348,15 @@ namespace Proyecto_Grupo02.Controllers
                 CargarCombosProducto(modelo);
 
                 return View(modelo);
+            }
+
+
+            var nombreImagenSubida =
+                GuardarImagenProducto(archivoImagen);
+
+            if (!string.IsNullOrEmpty(nombreImagenSubida))
+            {
+                modelo.Imagen = nombreImagenSubida;
             }
 
 
@@ -445,7 +481,8 @@ namespace Proyecto_Grupo02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarProducto(
-            AdministradorProductoFormularioViewModel modelo)
+            AdministradorProductoFormularioViewModel modelo,
+            HttpPostedFileBase archivoImagen)
         {
             if (!EsAdministrador())
             {
@@ -511,6 +548,15 @@ namespace Proyecto_Grupo02.Controllers
             if (producto == null)
             {
                 return HttpNotFound();
+            }
+
+
+            var nombreImagenSubida =
+                GuardarImagenProducto(archivoImagen);
+
+            if (!string.IsNullOrEmpty(nombreImagenSubida))
+            {
+                modelo.Imagen = nombreImagenSubida;
             }
 
 
@@ -3248,6 +3294,176 @@ namespace Proyecto_Grupo02.Controllers
 
 
             return RedirectToAction("Vendedores");
+        }
+
+        public ActionResult Pedidos()
+        {
+            if (!EsAdministrador())
+            {
+                return RedirectToAction(
+                    "Index",
+                    "Home"
+                );
+            }
+
+
+            var pedidos =
+                _context.Pedidos
+                .OrderByDescending(p =>
+                    p.FechaPedido)
+                .ToList();
+
+            var idsUsuarios =
+                pedidos
+                .Select(p => p.IdUsuario)
+                .Distinct()
+                .ToList();
+
+            var usuarios =
+                _usuariosContext.tbUsuario
+                .Where(u =>
+                    idsUsuarios.Contains(u.Consecutivo))
+                .ToList();
+
+            var modelo =
+                pedidos
+                .Select(p =>
+                {
+                    var usuario =
+                        usuarios.FirstOrDefault(u =>
+                            u.Consecutivo == p.IdUsuario);
+
+                    return new AdministradorPedidoViewModel
+                    {
+                        IdPedido =
+                            p.IdPedido,
+
+                        FechaPedido =
+                            p.FechaPedido,
+
+                        Cliente =
+                            usuario != null
+                                ? usuario.Nombre + " " + usuario.Apellido1
+                                : "Cliente",
+
+                        MetodoEntrega =
+                            p.MetodoEntrega,
+
+                        Sucursal =
+                            p.Sucursal.Nombre,
+
+                        Total =
+                            p.Total,
+
+                        Estado =
+                            p.Estado.NombreEstado
+                    };
+                })
+                .ToList();
+
+
+            return View(modelo);
+        }
+
+
+        public ActionResult DetallePedido(int id)
+        {
+            if (!EsAdministrador())
+            {
+                return RedirectToAction(
+                    "Index",
+                    "Home"
+                );
+            }
+
+
+            var pedido =
+                _context.Pedidos
+                .FirstOrDefault(p =>
+                    p.IdPedido == id);
+
+            if (pedido == null)
+            {
+                return RedirectToAction("Pedidos");
+            }
+
+
+            var usuario =
+                _usuariosContext.tbUsuario
+                .FirstOrDefault(u =>
+                    u.Consecutivo == pedido.IdUsuario);
+
+            var detalles =
+                _context.PedidoDetalles
+                .Where(d =>
+                    d.IdPedido == id)
+                .Select(d =>
+                    new AdministradorPedidoDetalleItemViewModel
+                    {
+                        Producto =
+                            d.Producto.Nombre,
+
+                        Imagen =
+                            d.Producto.Imagen,
+
+                        Talla =
+                            d.Talla,
+
+                        Color =
+                            d.Color,
+
+                        Cantidad =
+                            d.Cantidad,
+
+                        PrecioUnitario =
+                            d.PrecioUnitario,
+
+                        Subtotal =
+                            d.Subtotal
+                    })
+                .ToList();
+
+
+            var modelo =
+                new AdministradorPedidoDetalleViewModel
+                {
+                    IdPedido =
+                        pedido.IdPedido,
+
+                    FechaPedido =
+                        pedido.FechaPedido,
+
+                    Cliente =
+                        usuario != null
+                            ? usuario.Nombre + " " + usuario.Apellido1
+                            : "Cliente",
+
+                    CorreoCliente =
+                        usuario != null
+                            ? usuario.CorreoElectronico
+                            : "",
+
+                    MetodoEntrega =
+                        pedido.MetodoEntrega,
+
+                    Sucursal =
+                        pedido.Sucursal.Nombre,
+
+                    Observaciones =
+                        pedido.Observaciones,
+
+                    Estado =
+                        pedido.Estado.NombreEstado,
+
+                    Total =
+                        pedido.Total,
+
+                    Detalles =
+                        detalles
+                };
+
+
+            return View(modelo);
         }
 
         protected override void Dispose(bool disposing)

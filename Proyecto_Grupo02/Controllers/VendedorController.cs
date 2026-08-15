@@ -453,5 +453,160 @@ namespace Proyecto_Grupo02.Controllers
 
             return View(clientes);
         }
+
+
+        [HttpGet]
+        public ActionResult Perfil()
+        {
+            if (!EsVendedor())
+            {
+                return RedirectToAction(
+                    "Index",
+                    "Home"
+                );
+            }
+
+
+            int idUsuario =
+                Convert.ToInt32(
+                    Session["ConsecutivoUsuario"]
+                );
+
+            var usuario =
+                _usuariosContext.tbUsuario
+                .FirstOrDefault(u =>
+                    u.Consecutivo == idUsuario);
+
+            if (usuario == null)
+            {
+                ViewBag.Mensaje =
+                    "No se pudo cargar la información del usuario";
+
+                return View(new UsuarioModel());
+            }
+
+
+            return View(new UsuarioModel
+            {
+                Consecutivo =
+                    usuario.Consecutivo,
+
+                Identificacion =
+                    usuario.Identificacion,
+
+                Nombre =
+                    usuario.Nombre,
+
+                Apellido1 =
+                    usuario.Apellido1,
+
+                Apellido2 =
+                    usuario.Apellido2,
+
+                CorreoElectronico =
+                    usuario.CorreoElectronico,
+
+                Telefono =
+                    usuario.Telefono
+            });
+        }
+
+
+        [HttpPost]
+        public ActionResult Perfil(UsuarioModel modelo)
+        {
+            if (!EsVendedor())
+            {
+                return RedirectToAction(
+                    "Index",
+                    "Home"
+                );
+            }
+
+
+            int idUsuario =
+                Convert.ToInt32(
+                    Session["ConsecutivoUsuario"]
+                );
+
+            var usuario =
+                _usuariosContext.tbUsuario
+                .FirstOrDefault(u =>
+                    u.Consecutivo == idUsuario);
+
+            if (usuario == null)
+            {
+                ViewBag.Mensaje =
+                    "No se pudo validar la información";
+
+                return View(modelo);
+            }
+
+
+            if (usuario.CorreoElectronico != modelo.CorreoElectronico)
+            {
+                var correoEnUso =
+                    _usuariosContext.tbUsuario
+                    .Any(u =>
+                        u.CorreoElectronico == modelo.CorreoElectronico &&
+                        u.Consecutivo != idUsuario);
+
+                if (correoEnUso)
+                {
+                    ViewBag.Mensaje =
+                        "Ese correo ya está en uso por otra cuenta";
+
+                    return View(modelo);
+                }
+            }
+
+
+            usuario.Nombre =
+                modelo.Nombre;
+
+            usuario.Apellido1 =
+                modelo.Apellido1;
+
+            usuario.Apellido2 =
+                modelo.Apellido2;
+
+            usuario.CorreoElectronico =
+                modelo.CorreoElectronico;
+
+            usuario.Telefono =
+                modelo.Telefono;
+
+            if (!string.IsNullOrWhiteSpace(modelo.Contrasenna))
+            {
+                usuario.Contrasenna =
+                    modelo.Contrasenna;
+
+                usuario.TieneContrasennaTemp = false;
+                usuario.VigenciaContrasennaTemp = null;
+            }
+
+
+            var response =
+                _usuariosContext.SaveChanges();
+
+            if (response <= 0)
+            {
+                ViewBag.Mensaje =
+                    "No se pudo actualizar la información";
+
+                return View(modelo);
+            }
+
+
+            Session["NombreUsuario"] = usuario.Nombre;
+
+            ViewBag.MensajeExito =
+                "Tu información se actualizó correctamente";
+
+            modelo.Contrasenna = null;
+            modelo.ConfirmarContrasenna = null;
+
+            return View(modelo);
+        }
     }
 }

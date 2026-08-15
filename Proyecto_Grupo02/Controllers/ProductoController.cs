@@ -24,10 +24,19 @@ namespace Proyecto_Grupo02.Controllers
             return View(catalogo);
         }
 
-        public async Task<ActionResult> DetalleProducto(int id)
+        public async Task<ActionResult> DetalleProducto(int? id)
         {
+            if (!id.HasValue)
+            {
+                TempData["MensajeError"] =
+                    "Debe seleccionar un producto para ver su detalle.";
+
+                return RedirectToAction("Producto");
+            }
+
+
             var detalle =
-                await _productoService.ObtenerDetalleAsync(id);
+                await _productoService.ObtenerDetalleAsync(id.Value);
 
             if (detalle == null)
             {

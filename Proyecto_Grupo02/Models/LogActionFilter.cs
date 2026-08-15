@@ -9,7 +9,6 @@ namespace Proyecto_Grupo02.Models
 {
     public class LogActionFilter : ActionFilterAttribute
     {
-        // Se ejecuta antes de cada acción marcada con [LogActionFilter]
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (filterContext.HttpContext.Session["ConsecutivoUsuario"] == null)

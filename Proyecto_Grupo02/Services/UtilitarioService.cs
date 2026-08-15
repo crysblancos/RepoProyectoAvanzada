@@ -11,7 +11,6 @@ namespace Proyecto_Grupo02.Services
 {
     public class UtilitarioService
     {
-        // Registra errores en la tabla tbError usando LINQ (sin stored procedure)
         public void RegistrarErrorBitacora(string mensaje, string lugar)
         {
             try
@@ -35,11 +34,9 @@ namespace Proyecto_Grupo02.Services
             }
             catch
             {
-                // Si falla el registro del error, no queremos que la app se caiga por esto
             }
         }
 
-        // Genera una contraseña temporal aleatoria
         public string GenerarContrasenna()
         {
             var random = new Random();
@@ -54,8 +51,6 @@ namespace Proyecto_Grupo02.Services
 
             return new string(password);
         }
-
-        // Envía correo por Gmail
         public void EnviarCorreo(string destinatario, string asunto, string cuerpoHtml)
         {
             var correoSalida = ConfigurationManager.AppSettings["CorreoSalida"];

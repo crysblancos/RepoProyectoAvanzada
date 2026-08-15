@@ -42,7 +42,7 @@
             "EditarProducto",
             "Administrador",
             FormMethod.Post,
-            new { @class = "row" }))
+            new { @class = "row", enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -217,17 +217,31 @@
                     Imagen
                 </label>
 
+                @if (!string.IsNullOrEmpty(Model.Imagen))
+                {
+                    <div class="mb-2">
+                        <img src="~/Content/images/@Model.Imagen"
+                             alt="@Model.Nombre"
+                             style="max-height:120px;" />
+                    </div>
+                }
+
+                <input type="file"
+                       name="archivoImagen"
+                       class="form-control"
+                       accept="image/*" />
+
+                <small class="text-muted">
+                    Sube una nueva imagen para reemplazar la actual, o si prefieres, escribe abajo el nombre de una imagen ya guardada en el proyecto.
+                </small>
+
                 @Html.TextBoxFor(
                     m => m.Imagen,
                     new
                     {
-                        @class = "form-control",
+                        @class = "form-control mt-2",
                         placeholder = "Ejemplo: blusa1.png"
                     })
-
-                <small class="text-muted">
-                    Ingresa el nombre de la imagen utilizada por el producto.
-                </small>
 
                 @Html.ValidationMessageFor(
                     m => m.Imagen,

@@ -71,7 +71,6 @@ namespace Proyecto_Grupo02.Controllers
                         return View(model);
                     }
 
-                    // Si el correo cambió, validar que no esté en uso por otro usuario
                     if (usuario.CorreoElectronico != model.CorreoElectronico)
                     {
                         var correoEnUso = (from U in context.tbUsuario
@@ -86,14 +85,12 @@ namespace Proyecto_Grupo02.Controllers
                         }
                     }
 
-                    // Actualizar datos del perfil
                     usuario.Nombre = model.Nombre;
                     usuario.Apellido1 = model.Apellido1;
                     usuario.Apellido2 = model.Apellido2;
                     usuario.CorreoElectronico = model.CorreoElectronico;
                     usuario.Telefono = model.Telefono;
 
-                    // Solo cambiar la contraseña si el usuario escribió una nueva
                     if (!string.IsNullOrWhiteSpace(model.Contrasenna))
                     {
                         usuario.Contrasenna = model.Contrasenna;
@@ -110,12 +107,10 @@ namespace Proyecto_Grupo02.Controllers
                         return View(model);
                     }
 
-                    // Refrescar el nombre en sesión, por si lo cambió
                     Session["NombreUsuario"] = usuario.Nombre;
 
                     ViewBag.MensajeExito = "Tu información se actualizó correctamente";
 
-                    // Volvemos a cargar el modelo limpio (sin contraseñas) para la vista
                     model.Contrasenna = null;
                     model.ConfirmarContrasenna = null;
                     return View(model);
