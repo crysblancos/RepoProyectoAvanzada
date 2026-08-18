@@ -21,26 +21,25 @@ namespace Proyecto_Grupo02.Services
         public async Task<bool> RegistrarAsync(
             ContactoModel model)
         {
-            var idPendiente = await _context.Estados
-                .Where(e => e.NombreEstado == "Pendiente")
-                .Select(e => e.IdEstado)
-                .FirstOrDefaultAsync();
+            var estadoPendiente = await _context.Estados
+                .FirstOrDefaultAsync(e => e.NombreEstado == "Pendiente");
 
-            if (idPendiente == 0)
+            if (estadoPendiente == null)
             {
-                return false;
+                estadoPendiente = new tbEstado { NombreEstado = "Pendiente" };
+                _context.Estados.Add(estadoPendiente);
+                await _context.SaveChangesAsync();
             }
 
-            _context.Contactos.Add(
-                new tbContacto
-                {
-                    Nombre = model.Nombre,
-                    Correo = model.Correo,
-                    Asunto = model.Asunto,
-                    Mensaje = model.Mensaje,
-                    Fecha = DateTime.Now,
-                    IdEstado = idPendiente
-                });
+            _context.Contactos.Add(new tbContacto
+            {
+                Nombre = model.Nombre,
+                Correo = model.Correo,
+                Asunto = model.Asunto,
+                Mensaje = model.Mensaje,
+                Fecha = DateTime.Now,
+                IdEstado = estadoPendiente.IdEstado
+            });
 
             return await _context.SaveChangesAsync() > 0;
         }

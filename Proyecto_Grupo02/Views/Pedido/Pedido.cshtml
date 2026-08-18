@@ -15,6 +15,18 @@
 
 <section class="section">
 
+    @if (TempData["MensajeError"] != null)
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    @TempData["MensajeError"]
+                </div>
+            </div>
+        </div>
+    }
+
+
     <div class="ka-checkout-steps">
 
         <div class="ka-checkout-step">
